@@ -1920,9 +1920,10 @@ footer .copy-right {
 
 /* 回到顶部按钮 颜色 */
 .top-scroll .btn-floating {
-    background: linear-gradient(to bottom right, #1e1e1f 0%, #070707 100%);
+    background: linear-gradient(to bottom right, #3c3c3d 0%, #363636 100%);
     width: 48px;
     height: 48px;
+    opacity: 0.8;  /* 透明效果 值范围 0~1，看情况自己修改 */
 }
 
 .top-scroll .btn-floating i {
