@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Altium Designer 20 笔记（一） 创建工程, 泽文i 的博客">
+    <meta name="keywords" content="8051 ELL函数库 介绍, 泽文i 的博客">
     <meta name="description" content="专注 真诚">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Altium Designer 20 笔记（一） 创建工程 | 泽文i 的博客</title>
+    <title>8051 ELL函数库 介绍 | 泽文i 的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/ad20_note/Altium_Designer_20_%E7%AC%94%E8%AE%B0%E5%B0%81%E9%9D%A2.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Altium Designer 20 笔记（一） 创建工程</h1>
+                    <h1 class="description center-align post-title">8051 ELL函数库 介绍</h1>
                 </div>
             </div>
         </div>
@@ -330,8 +330,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/PCB%E8%AE%BE%E8%AE%A1/">
-                                <span class="chip bg-color">PCB设计</span>
+                            <a href="/tags/8051MCU/">
+                                <span class="chip bg-color">8051MCU</span>
                             </a>
                         
                     </div>
@@ -342,8 +342,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Altium-Designer-20/" class="post-category">
-                                Altium Designer 20
+                            <a href="/categories/8051-ELL%E5%87%BD%E6%95%B0%E5%BA%93/" class="post-category">
+                                8051 ELL函数库
                             </a>
                         
                     </div>
@@ -379,40 +379,34 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Altium-Designer介绍"><a href="#Altium-Designer介绍" class="headerlink" title="Altium Designer介绍"></a>Altium Designer介绍</h2><p>Altium Designer 是原Protel软件开发商Altium公司推出的一体化的电子产品开发系统，主要运行在Windows操作系统。</p>
-<p>这套软件通过把原理图设计、电路仿真、PCB绘制编辑、拓扑逻辑自动布线、信号完整性分析和设计输出等技术的完美融合，为设计者提供了全新的设计解决方案，使设计者可以轻松进行设计，熟练使用这一软件使电路设计的质量和效率大大提高。</p>
-<h2 id="AD20-基本工程介绍"><a href="#AD20-基本工程介绍" class="headerlink" title="AD20 基本工程介绍"></a>AD20 基本工程介绍</h2><p>AD20的工程组成基本如下：</p>
-<img src=" ../../../../images/ad20_note/note1/工程文件组成.jpg" style="zoom:50%;" />
+                <h2 id="8051-ELL函数库简介"><a href="#8051-ELL函数库简介" class="headerlink" title="8051 ELL函数库简介"></a>8051 ELL函数库简介</h2><br>
 
-<p>一个工程最核心的文件是原理图和PCB，与其相搭配的是这两种文件对应的库，之后是各种生成文件。</p>
-<h2 id="AD20-工程创建流程"><a href="#AD20-工程创建流程" class="headerlink" title="AD20 工程创建流程"></a>AD20 工程创建流程</h2><h5 id="首先，我们要创建一个空的工程项目"><a href="#首先，我们要创建一个空的工程项目" class="headerlink" title="首先，我们要创建一个空的工程项目"></a>首先，我们要创建一个空的工程项目</h5><p>选择 <code>文件</code> -&gt; <code>新的..</code> -&gt;  <code>项目</code></p>
-<img src=" ../../../../images/ad20_note/note1/新建工程.jpg" style="zoom:50%;" />
+<p>ELL是<code>efficient low-layer</code>的缩写，意思是<code>高效低封装</code>，结合了<code>HAL库</code>和<code>LL库</code>的编程思想，既保证了通用性又降低了flash的过度占用。可谓是一举两得，高效、简洁、好用！<br><br></p>
+<p>开发函数库，最初是为了满足我自己的生产需求，后来经过深思熟虑，我想做一个好用的通用库，所以把它开源出来，分享给广大工程师们。<br><br></p>
+<p>函数库是基于Keil开发，支持Keil4和Keil5，支持Vscode协同开发，推荐使用EIDE插件。目前函数库主要适配了STC公司的单片机型号，以STC8系列为主。后续计划增加STC12、STC15、STC16系列。<br><br></p>
+<h2 id="新手如何入门ELL函数库"><a href="#新手如何入门ELL函数库" class="headerlink" title="新手如何入门ELL函数库"></a>新手如何入门ELL函数库</h2><br>
 
-<h5 id="接着，我们要选择工程类型"><a href="#接着，我们要选择工程类型" class="headerlink" title="接着，我们要选择工程类型"></a>接着，我们要选择工程类型</h5><p>选择 <code>PCB</code> -&gt; <code>Default</code></p>
-<img src=" ../../../../images/ad20_note/note1/工程类型页面.jpg" style="zoom:50%;" />
+<p>如果你明白了ELL函数库的架构，那么对你学习本库会有非常大的帮助！<br><br></p>
+<p>函数库采用了一个裸机框架来组织库文件。框架包括两大部分：<code>工程文件</code>和<code>库文件</code>。<br><br></p>
+<p><strong>工程文件</strong>主要存放<code>Keil工程</code>、<code>Vscode文件</code>、<code>用户代码</code>。这里可以根据你的编程习惯进行安排，非常的自由！<br><br></p>
+<p><strong>库文件</strong>才是我们的重头戏，它主要分为四个部分：<code>核心文件夹</code>、<code>片内外设库</code>、<code>组件库</code>、<code>设备驱动库</code>。<br><br></p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">核心文件夹：
+存放各种MCU的寄存器头文件、函数库重定义数据类型头文件、函数库常用数据结构头文件
 
-<p>一般设计画电路板，我们选择PCB选项。点击到<code>PCB</code>这个选项展开，defult选项是由我们自建工程属性，其他的选项，是软件预先帮我们设计好的demo工程。</p>
-<h5 id="给工程命名和设置存放路径"><a href="#给工程命名和设置存放路径" class="headerlink" title="给工程命名和设置存放路径"></a>给工程命名和设置存放路径</h5><p>选择 <code>PCB</code> -&gt; <code>Default</code></p>
-<img src=" ../../../../images/ad20_note/note1/工程类型页面-配置属性.jpg" style="zoom:75%;" />
+片内外设库：
+存放MCU的片内外设模块，是库的主要构成单元。
 
-<p>路径一定要重新设置，默认是指向AD的根目录或者默认的工作区的。</p>
-<p>工程名字根据自己习惯命名。</p>
-<h5 id="给工程创建原理图和库"><a href="#给工程创建原理图和库" class="headerlink" title="给工程创建原理图和库"></a>给工程创建原理图和库</h5><p>选择 <code>文件</code> -&gt; <code>新的..</code> -&gt; <code>库</code> -&gt; <code>原理图库</code> 和 <code>PCB元件库</code></p>
-<p>选择 <code>文件</code> -&gt; <code>新的..</code> -&gt; <code>原理图</code> 和 <code>PCB</code></p>
-<img src=" ../../../../images/ad20_note/note1/主页面-创建库.jpg" style="zoom:75%;" />
+组件库：
+配套8051内核开发的好用组件，具有一定的抽象性和封装性，能加速项目的开发，比如TMT时间片任务进程组件。
 
-<p>如果你有自己的库，可以先不创建库，直接创建原理图，后面再把库导入进来。PCB我们也可以不用先创建，画好原理图后，再创建也不迟。</p>
-<p><strong>特别强调，每一个文件建好以后，都要保存 ctrl+s快捷键保存。</strong></p>
-<p>文件保存的路径默认是工程的路径。</p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><img src=" ../../../../images/ad20_note/note1/工程树.jpg" style="zoom:75%;" />
+设备驱动库：
+一些常用的外围芯片、模块，通过统一的驱动框架，进行封装，方便开发。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
 
-<p>一般我们创建完毕工程以后，就是四个文件：<code>原理图</code>、<code>PCB</code>、<code>原理图库</code>、<code>PCB元件库</code>。后两个库如果有现成的，可以直接导入进来。</p>
-<p>我们在初次创建工程的时候，可能遇到的问题有：</p>
-<ul>
-<li>工程路径没有设置好，导致下次找不到工程文件；</li>
-<li>工程下的各文件是单独建立的，导致各文件没有产生正确的依赖关系，比如原理图无法更新到PCB中；</li>
-<li>文件建立以后，没有及时保存，导致工程树中看不到。</li>
-</ul>
+<p>下面是ELL函数库的框架图:<br><br></p>
+<img src=" ../../../../images/8051_ell_lib/doc/ELL-framework.png" style="zoom:75%;" />
+
 
                 
             </div>
@@ -439,7 +433,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zeweni.gitee.io/2021/02/18/altium-designer-20-bi-ji-yi-ad-gong-cheng-zu-cheng-ji-chuang-jian/">http://zeweni.gitee.io/2021/02/18/altium-designer-20-bi-ji-yi-ad-gong-cheng-zu-cheng-ji-chuang-jian/</a>
+                    <a href="http://zeweni.gitee.io/2021/02/18/8051-ell-han-shu-ku-jie-shao/">http://zeweni.gitee.io/2021/02/18/8051-ell-han-shu-ku-jie-shao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -477,8 +471,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/PCB%E8%AE%BE%E8%AE%A1/">
-                                    <span class="chip bg-color">PCB设计</span>
+                                <a href="/tags/8051MCU/">
+                                    <span class="chip bg-color">8051MCU</span>
                                 </a>
                             
                         </div>
@@ -916,9 +910,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/02/18/8051-ell-han-shu-ku-jie-shao/">
                     <div class="card-image">
@@ -935,9 +930,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -950,6 +945,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -965,7 +961,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2021/02/18/altium-designer-20-bi-ji-yi-ad-gong-cheng-zu-cheng-ji-chuang-jian/">
@@ -998,7 +994,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
