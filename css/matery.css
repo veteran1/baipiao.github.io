@@ -242,6 +242,22 @@ mark {
 
 .bg-color {
     background-image: linear-gradient(to right, #33332f 0%, #282829 100%);
+    opacity: 0.8;  /* 透明效果 值范围 0~1，看情况自己修改 */
+}
+
+/* 滚动条 */
+::-webkit-scrollbar-thumb {
+    background-color: #8a8b8d;
+    background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+    border-radius: 3em;
+}
+::-webkit-scrollbar-track {
+    background-color: rgb(230, 222, 222);
+    border-radius: 3em;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 15px;
 }
 
 .text-color {
@@ -257,7 +273,7 @@ mark {
     position: fixed;
     bottom: 0;
     z-index: 300;
-    background: linear-gradient(to right, #3039bf 0%, #0f299d 100%);
+    background: linear-gradient(to right, #2c2c2e 0%, #3a3a3a 100%);
     opacity: 0.8;
 }
 
@@ -1902,8 +1918,9 @@ footer .copy-right {
     z-index: 998;
 }
 
+/* 回到顶部按钮 颜色 */
 .top-scroll .btn-floating {
-    background: linear-gradient(to bottom right, #3a3dff 0%, #382aff 100%);
+    background: linear-gradient(to bottom right, #1e1e1f 0%, #070707 100%);
     width: 48px;
     height: 48px;
 }
