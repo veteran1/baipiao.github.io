@@ -404,7 +404,10 @@
 
 <p>下面是ELL函数库的框架图:<br><br></p>
 <img src=" ../../../../images/8051_ell_lib/doc/ELL-framework.png" style="zoom:75%;" />
+<br>
 
+<p>关键的是，我们该如何在工程里面使用函数库呢？我们提供了一个非常便捷的方法！我们拿STC8系列的ELL函数库举例，你只需要调用一个头文件<code>Lib_STC8x.h</code>，和配置一个头文件<code>Lib_CFG.h</code>。<br><br></p>
+<p>通过配置<code>Lib_CFG.h</code>，可以实现对库裁剪和控制，定制适合你工程的函数库。而使用函数库内的API，只需要调用<code>Lib_STC8x.h</code>就可以了。</p>
 
                 
             </div>
