@@ -252,7 +252,7 @@ mark {
     border-radius: 3em;
 }
 ::-webkit-scrollbar-track {
-    background-color: rgb(230, 222, 222);
+    background-color: rgb(255, 255, 255);
     border-radius: 3em;
 }
 ::-webkit-scrollbar {
