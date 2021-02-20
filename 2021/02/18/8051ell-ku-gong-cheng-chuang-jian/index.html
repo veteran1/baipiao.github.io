@@ -476,7 +476,7 @@
 </ul>
 <br>
 
-<p>这里我选择Keil5，STC-ISP助手v6.88，如果你怕出现问题，就选择和我一样的版本,STC型号选择STC8A8K64S4A12.<br><br></p>
+<p>这里我选择Keil5，STC-ISP助手v6.88，如果你怕出现问题，就选择和我一样的版本,STC型号选择STC8A8K64S4A12。<br><br></p>
 <p><strong>1. 安装STC的芯片包</strong><br><br></p>
 <p>打开STC-ISP助手，选择<code>Keil仿真设置</code>，按照下图操作后，成功就会弹窗<code>STC MCU芯片型号添加成功！</code>。注意，选择Keil的根目录时，只要到最顶层的Keil路径就可以了。<br><br></p>
 <img src=" ../../../../images/8051_ell_lib/doc/STC-ISP-device.jpg" style="zoom:75%;" />
@@ -502,9 +502,9 @@
 <p>Keil工程会跳出Device选择界面，按照下图操作：<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-4.jpg" style="zoom:75%;" /><br><br></p>
 <p>选择否，不需要添加汇编文件（这是一个启动文件，这里不需要）。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-5.jpg" style="zoom:75%;" /><br><br></p>
 <p>点击左上方的魔术棒，我们来配置工程的基本属性，从左到右依次点击选项卡。先选择<code>Target</code>，按图进行配置。根据STC8A的内存容量，所以我们选择XDATA、64Kprogram。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-6.jpg" style="zoom:75%;" /><br><br></p>
-<p>选择<code>output</code>，按图进行操作，要注意必须点击进<code>build</code>文件夹里面，这个路径设置才能生效，这一步主要是为了统一管理输出文件。最后设置好路径以后，别忘了勾选生成Hex文件的按钮。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-7.jpg" style="zoom:75%;" /><br><br></p>
+<p>选择<code>output</code>，按图进行操作，要注意必须点击进<code>build</code>文件夹里面，这个路径设置才能生效，这一步主要是为了统一管理输出文件。最后设置好路径以后，别忘了勾选生成Hex文件的复选框。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-7.jpg" style="zoom:75%;" /><br><br></p>
 <p>选择<code>Listing</code>，按图进行操作，同样选择<code>build</code>文件夹的路径，这样我们放在一起，不用额外一个文件夹了。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-8.jpg" style="zoom:75%;" /><br><br></p>
-<p>选择<code>C51</code>，按图步骤将文件夹<code>libraries</code>下的文件夹路径添加进来，你可点击这个图放大后进行对照操作，不要有所遗漏。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-9.jpg" style="zoom:75%;" /><br><br></p>
+<p>选择<code>C51</code>，按图中所示步骤，将文件夹<code>libraries</code>下的文件夹路径添加进来，你可以点击这个图放大后进行对照操作，不要有所遗漏。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-9.jpg" style="zoom:75%;" /><br><br></p>
 <p>选择<code>LX51 Misc</code>，在图中所示位置输入<code>REMOVEUNUSED</code>。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-10.jpg" style="zoom:75%;" /><br><br></p>
 <p>选择<code>dewbug</code>,如果你暂时不需要外部硬件调试，可以跳过这一步，如果需要就按图设置，要注意这里还需要点击<code>setting</code>，如果你使用串口仿真调试，就选择对应的COM口，并把波特率设置为115200。<br><img src=" ../../../../images/8051_ell_lib/doc/Keil-project-11.jpg" style="zoom:75%;" /><br><br></p>
 <p>点击左上方图中示意的图标，然后按图创建所示分支，并把每个分支下的内容添加进来，可以点击图片放大观看，方便对应。</p>
@@ -530,6 +530,48 @@ int main(void)
 <p>注意事项：</p>
 <ul>
 <li>工程下的文件，如果变动位置或者修改名称，都需要在Keil的配置界面<code>C51</code>中重新配置该文件或者文件的路径，同时在主界面左边的工程树中，重新导入修改的文件。</li>
+</ul>
+<blockquote>
+<p>VsCode协同开发</p>
+</blockquote>
+<ul>
+<li>准备工作：ELL函数Keil工程一份、VsoCode、VsCode C/C++插件、VsCode Keil Assistant插件</li>
+<li>优点：提供代码补全功能，人机交互做的非常好</li>
+<li>缺点：没有debug功能，需要配合Keil使用，需要通过Keil来向工程添加新的文件，</li>
+</ul>
+<br>
+
+<p><strong>1. 安装VsCode 插件</strong><br><br></p>
+<p>点击左边的<code>应用商店</code>，安装<code>C/C++</code>、<code>Chinese</code>、<code>Keil Assistant</code>。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-h-1.jpg" style="zoom:75%;" /><br><br></p>
+<p><strong>2. 配置Keil Assistant插件</strong><br><br></p>
+<p>点击<code>Keil Assistant</code>的设置图标,选择<code>扩展设置</code>。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-h-2.jpg" style="zoom:75%;" /><br><br></p>
+<p>导入Keil的执行文件路径，注意路径最后面要加.exe。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-h-3.jpg" style="zoom:75%;" /><br><br></p>
+<p><strong>3. 导入Keil工程，进行协同开发</strong><br><br></p>
+<p>导入Keil工程所在的文件夹。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-h-4.jpg" style="zoom:75%;" /><br><br></p>
+<p>通过图示，点击<code>+</code>按钮，将工程文件打开。注意，不能使用VsCode直接打开Keil工程文件，必须通过这个插件来打开。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-h-5.jpg" style="zoom:75%;" /><br><br></p>
+<p>在Keil Assistant插件的页面，可以对工程进行预览、编译，如果你需要向工程添加文件，需要回到Keil里面操作，Debug也是。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-h-6.jpg" style="zoom:75%;" /><br><br></p>
+<blockquote>
+<p>VsCode工程创建</p>
+</blockquote>
+<ul>
+<li>准备工作：ELL函数Keil工程一份、VsoCode、VsCode C/C++插件、Embedded IDE插件</li>
+<li>优点：提供代码补全功能，人机交互做的非常好，提供多种工具链，可以修改工程，进行编译、调试</li>
+<li>缺点：部分依赖Keil调试的芯片，没有debug功能</li>
+</ul>
+<p><strong>1. 安装VsCode 插件</strong><br><br></p>
+<p>点击左边的<code>应用商店</code>，安装<code>C/C++</code>、<code>Chinese</code>、<code>Embedded IDE</code>。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-P-1.jpg" style="zoom:75%;" /><br><br></p>
+<p><strong>2. 配置Embedded IDE插件</strong><br><br></p>
+<img src=" ../../../../images/8051_ell_lib/doc/VsoCode-P-2.jpg" style="zoom:75%;" />
+<br>
+
+<p>打开Keil的根目录，选择<code>TOOLS.INI</code>文件。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-P-3.jpg" style="zoom:75%;" /><br><br></p>
+<p><strong>3. 导入Keil工程，生成EIDE工程</strong><br><br></p>
+<p>按图所示，导入Keil工程。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-P-4.jpg" style="zoom:75%;" /><br><br></p>
+<p>选择与Keil工程放在同一个文件夹下，方便管理项目。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-P-6.jpg" style="zoom:75%;" /><br><br></p>
+<p>修改配置文件，因为我们的工程使用的是STC8A8K64S4A12，所以选择RAM大容量。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-P-6.jpg" style="zoom:75%;" /><br><br></p>
+<p>编译工程，看到如下信息，就表示我们工程创建成功了。<br><img src=" ../../../../images/8051_ell_lib/doc/VsoCode-P-7.jpg" style="zoom:75%;" /><br><br></p>
+<ul>
+<li>补充：EIDE插件还支持SDCC 和stcgal，可以完全脱离Keil开发，如果你感兴趣可以尝试一下。</li>
 </ul>
 
                 
