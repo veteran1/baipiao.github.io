@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="8051ELL库介绍, 泽文i 的博客">
+    <meta name="keywords" content="考研英语-词汇笔记（一）, 泽文i 的博客">
     <meta name="description" content="专注 真诚">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>8051ELL库介绍 | 泽文i 的博客</title>
+    <title>考研英语-词汇笔记（一） | 泽文i 的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/english/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E5%B0%81%E9%9D%A2.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">8051ELL库介绍</h1>
+                    <h1 class="description center-align post-title">考研英语-词汇笔记（一）</h1>
                 </div>
             </div>
         </div>
@@ -330,8 +330,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/8051MCU/">
-                                <span class="chip bg-color">8051MCU</span>
+                            <a href="/tags/%E8%8B%B1%E8%AF%AD/">
+                                <span class="chip bg-color">英语</span>
                             </a>
                         
                     </div>
@@ -342,8 +342,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/8051-ELL%E5%87%BD%E6%95%B0%E5%BA%93%E6%8C%87%E5%8D%97/" class="post-category">
-                                8051 ELL函数库指南
+                            <a href="/categories/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD/" class="post-category">
+                                考研英语
                             </a>
                         
                     </div>
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-18
+                    2021-02-22
                 </div>
                 
 
@@ -379,55 +379,75 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="8051-ELL函数库简介"><a href="#8051-ELL函数库简介" class="headerlink" title="8051 ELL函数库简介"></a>8051 ELL函数库简介</h2><br>
+                <h2 id="前言（Unit-1）"><a href="#前言（Unit-1）" class="headerlink" title="前言（Unit 1）"></a>前言（Unit 1）</h2><br>
 
-<p>ELL是<code>efficient low-layer</code>的缩写，意思是<code>高效低封装</code>，结合了<code>HAL库</code>和<code>LL库</code>的编程思想，既保证了通用性又降低了flash的过度占用。可谓是一举两得，高效、简洁、好用！<br><br></p>
-<p>开发函数库，最初是为了满足我自己的生产需求，后来经过深思熟虑，我想做一个好用的通用库，所以把它开源出来，分享给广大工程师们。<br><br></p>
-<p>函数库是基于Keil开发，支持Keil4和Keil5，支持Vscode协同开发，推荐使用EIDE插件。目前函数库主要适配了STC公司的单片机型号，以STC8系列为主。后续计划增加STC12、STC15、STC16系列。<br><br></p>
-<h2 id="新手如何入门ELL函数库"><a href="#新手如何入门ELL函数库" class="headerlink" title="新手如何入门ELL函数库"></a>新手如何入门ELL函数库</h2><br>
+<pre class="line-numbers language-note" data-language="note"><code class="language-note">说实话，我的英语很不好，但有幸接触到刘晓艳老师的课程，我觉得讲的非常棒，妙趣横生。
+所以我想通过博客的形式，辅助自己记忆，同时记录一些自己的经验和心得。
 
-<p>如果你明白了ELL函数库的架构，那么对你学习本库会有非常大的帮助！函数库采用了一个裸机框架来组织库文件。框架包括两大部分：<code>工程文件</code>和<code>库文件</code>。<br><br></p>
-<p>工程文件主要存放<code>Keil工程</code>、<code>Vscode文件</code>、<code>用户代码</code>。这里可以根据你的编程习惯进行安排，非常的自由！库文件才是我们的重头戏，它主要分为四个部分：<code>核心文件夹</code>、<code>片内外设库</code>、<code>组件库</code>、<code>设备驱动库</code>。<br><br></p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">核心文件夹：
-存放各种MCU的寄存器头文件、函数库重定义数据类型头文件、函数库常用数据结构头文件
-
-片内外设库：
-存放MCU的片内外设模块，是库的主要构成单元。
-
-组件库：
-配套8051内核开发的好用组件，具有一定的抽象性和封装性，能加速项目的开发，比如TMT时间片任务进程组件。
-
-设备驱动库：
-一些常用的外围芯片、模块，通过统一的驱动框架进行封装，方便开发。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+真正搞工程以后，才发现英语是多么重要。查资料充当其中，看代码看数据手册都离不开它。
+所以我痛定思痛，即使考研没考上，英语也得补上去。但我深知提升的过程是多么枯燥艰苦，
+但是我不气馁，祝自己2022考研上岸！先从英语开始！<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <br>
 
-<p>下面是ELL函数库的框架图:<br><br></p>
-<img src=" ../../../../images/8051_ell_lib/doc/ELL-framework.png" style="zoom:75%;" />
-<br>
-
-<p>关键的是，我们该如何在工程里面使用函数库呢？我们提供了一个非常便捷的方法！我们拿STC8系列的ELL函数库举例，你只需要调用一个头文件<code>Lib_STC8x.h</code>，和配置一个头文件<code>Lib_CFG.h</code>。<br><br></p>
-<p>通过配置<code>Lib_CFG.h</code>，可以实现对库裁剪和控制，定制适合你工程的函数库。而使用函数库内的API，只需要调用<code>8051_ELL_Lib.h</code>就可以了。</p>
-<p>看到这里，如果你对本库产生了兴趣，可以通过下面下载:<br><br></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://gitee.com/zeweni/ELL-8051-LIB">gitee仓库  (需要注册账户下载，速度快)</a></p>
+<h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><blockquote>
+<p> n.行为；功能，作用 </p>
 </blockquote>
-<br>
-
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/zewen-i/8051-ELL-LIB">github仓库   (可以直接下载，但速度慢)</a></p>
+<ul>
+<li><p>Now,you can begin your action to remember these interesting words.<br>现在，你可以开始背有趣单词的行动啦！</p>
+</li>
+<li><p>the action of lung and liver<br>肺和肝的作用</p>
+</li>
+</ul>
+<h2 id="activate"><a href="#activate" class="headerlink" title="activate"></a>activate</h2><blockquote>
+<p>vt. 使活动，激活</p>
 </blockquote>
-<br>
-
-<p>本库是开源项目，遵循 Apache 许可证 2.0 版本，可免费在商业产品中使用，不需要公布应用程序源码，没有潜在商业风险。<br><br></p>
-<p>如果本项目对你有所帮助，可以通过下方的<code>赞赏</code>按钮，请我喝一杯咖啡！<br><br></p>
-<blockquote>
-<p>QQ技术交流群：1001220381</p>
+<ul>
+<li> I am activated to prepare the examination actively.<br>我要积极准备这次考试。</li>
+<li>The dog was activated to bite the begger nearby.<br>这条狗瘦了刺激，去咬旁边的那个乞丐。</li>
+</ul>
+<pre class="line-numbers language-不择手段记单词" data-language="不择手段记单词"><code class="language-不择手段记单词">activity n.活动，活跃
+因此activate 可以理解为“使活动，激活”。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="ascend"><a href="#ascend" class="headerlink" title="ascend"></a>ascend</h2><blockquote>
+<p>vi. 升高，上升</p>
 </blockquote>
-<br>
+<ul>
+<li>He watched the airplane ascending higher and higher.<br>他看见飞机飞的越来越高。</li>
+</ul>
+<blockquote>
+<p>vt. 攀登，登上</p>
+</blockquote>
+<ul>
+<li>A group of scientists are planning to ascend Mount Everset.<br>一群科学家正在计划攀登珠穆朗玛峰。</li>
+</ul>
+<pre class="line-numbers language-不择手段记单词" data-language="不择手段记单词"><code class="language-不择手段记单词">一再地（as-） + 走（ce），一再地朝上走，就是“升高；攀登”。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-反义词" data-language="反义词"><code class="language-反义词">descend     vi. 下来，下降
+The sun descend over the western hills.
+日落西山<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-扩展" data-language="扩展"><code class="language-扩展">descent    n.下降，降落
+The plane begain its descent to the airport.
+飞机开始降落到机场。
 
-<p>我会在群里免费答疑和提供技术支持！</p>
-<br>
+descendant    n.子孙，后裔，后代 (从身上生下来的，是“子孙后代”)
+She is a direct descendant of Queen Victoria.
+她就是维多利亚女王的嫡系后代。
+
+offspring    n.（单复数同形）后代
+His offsping are diligent and intelligent.
+他的后代勤奋又聪明。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-真题" data-language="真题"><code class="language-真题">The grand mediocrity of today-everyone being the same in survival 
+and number of offspring - means that natural selection has loat
+80% of its power in uper-middle-class India compared to the tribes.
+今天这种极其显著的平均化-每个人的生存机会和子女数量都相同-这意味着与印度
+部落相比，自然选择在印度中上层已经失去了80%的效力。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="attach"><a href="#attach" class="headerlink" title="attach"></a>attach</h2><blockquote>
+<p>vt. 系，贴，附</p>
+</blockquote>
+<ul>
+<li>I never attach myself to any big power.<br>我从来不依附任何强者。</li>
+</ul>
+<pre class="line-numbers language-不择手段记单词" data-language="不择手段记单词"><code class="language-不择手段记单词">一再地（at-） + 触摸（tach），一再地触摸 -&gt; 附上，粘着<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-派生" data-language="派生"><code class="language-派生">attachment    n.附件，附属物<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-反义词" data-language="反义词"><code class="language-反义词">detach    vt. 分开，分离<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
                 
             </div>
@@ -454,7 +474,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zeweni.gitee.io/2021/02/18/8051ell-ku-jie-shao/">http://zeweni.gitee.io/2021/02/18/8051ell-ku-jie-shao/</a>
+                    <a href="http://zeweni.gitee.io/2021/02/22/kao-yan-ying-yu-ci-hui-bi-ji-yi/">http://zeweni.gitee.io/2021/02/22/kao-yan-ying-yu-ci-hui-bi-ji-yi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -492,8 +512,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/8051MCU/">
-                                    <span class="chip bg-color">8051MCU</span>
+                                <a href="/tags/%E8%8B%B1%E8%AF%AD/">
+                                    <span class="chip bg-color">英语</span>
                                 </a>
                             
                         </div>
@@ -931,9 +951,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/02/22/kao-yan-ying-yu-ci-hui-bi-ji-yi/">
                     <div class="card-image">
@@ -950,9 +971,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -965,6 +986,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -983,12 +1005,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/02/18/8051ell-ku-gong-cheng-chuang-jian/">
+                <a href="/2021/02/18/8051ell-ku-jie-shao/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库工程创建">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库介绍">
                         
-                        <span class="card-title">8051ELL库工程创建</span>
+                        <span class="card-title">8051ELL库介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
