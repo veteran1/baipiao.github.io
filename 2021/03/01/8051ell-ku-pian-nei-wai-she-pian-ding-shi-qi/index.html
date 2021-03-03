@@ -428,13 +428,14 @@
 </tbody></table>
 <h5 id="TIMER-InitType-结构体说明："><a href="#TIMER-InitType-结构体说明：" class="headerlink" title="TIMER_InitType 结构体说明："></a>TIMER_InitType 结构体说明：</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> 
 <span class="token punctuation">&#123;</span>
+ <span class="token class-name">uint8_t</span> SysClkDiv<span class="token punctuation">;</span>       <span class="token comment">//定时器时钟预分频器，只有STC8G、STC8H才有</span>
  TIMERType_Type Type<span class="token punctuation">;</span>     <span class="token comment">// 定时器工作类型</span>
  TIMERMode_Type Mode<span class="token punctuation">;</span>     <span class="token comment">// 定时器工作模式</span>
  TIMERTCycle_Type TCycle<span class="token punctuation">;</span> <span class="token comment">// 指令周期</span>
  FUNSTATE ClkOut<span class="token punctuation">;</span>         <span class="token comment">// 可编程时钟输出</span>
  <span class="token class-name">uint16_t</span> value<span class="token punctuation">;</span>          <span class="token comment">// 定时器定时时间（us）</span>
  FUNSTATE run<span class="token punctuation">;</span>            <span class="token comment">// 运行标志位</span>
-<span class="token punctuation">&#125;</span> TIMER_InitType<span class="token punctuation">;</span>	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span> TIMER_InitType<span class="token punctuation">;</span>	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="TIMERType-Type-枚举体说明："><a href="#TIMERType-Type-枚举体说明：" class="headerlink" title="TIMERType_Type 枚举体说明："></a>TIMERType_Type 枚举体说明：</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">enum</span>
 <span class="token punctuation">&#123;</span>
   TIMER_Type_Timer   <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">,</span>   <span class="token comment">// 作为定时器</span>
@@ -1103,23 +1104,23 @@ int main(void)
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/01/8051ell-ku-pian-nei-wai-she-pian-chuan-kou/">
+                <a href="/2021/03/02/8051ell-ku-pian-nei-wai-she-pian-io-kou/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-串口">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-IO口">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-串口</span>
+                        <span class="card-title">8051ELL库-片内外设篇-IO口</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的串口
+                            本文主要讲解 8051 ELL函数库的IO口
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
                         </span>
                         <span class="publish-author">
                             
@@ -1151,23 +1152,23 @@ int main(void)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/02/18/8051ell-ku-jie-shao/">
+                <a href="/2021/03/01/8051ell-ku-pian-nei-wai-she-pian-chuan-kou/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库介绍">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-串口">
                         
-                        <span class="card-title">8051ELL库介绍</span>
+                        <span class="card-title">8051ELL库-片内外设篇-串口</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要介绍 8051 ELL函数库的由来和特性
+                            本文主要讲解 8051 ELL函数库的串口
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
                             </span>
                         <span class="publish-author">
                             
