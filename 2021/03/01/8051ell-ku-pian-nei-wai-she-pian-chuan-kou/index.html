@@ -384,17 +384,16 @@
 <p>串口1，工作模式有四种：<code>同步移位串行模式</code>、<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>、<code>可变波特率9位数据模式</code>。有四级中断优先级（0~3），在开启中断后，需要软件清理标志位。由定时器1、2做波特率发生器。可以进行多机通信，中继广播。</p>
 </blockquote>
 <blockquote>
-<p>定时器/计数器1，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。STC8G、STC8H系列还支持时钟8位预分频功能。</p>
+<p>串口2，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。</p>
 </blockquote>
 <blockquote>
-<p>定时器/计数器2，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。STC8G、STC8H系列还支持时钟8位预分频功能。</p>
+<p>串口3，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。</p>
 </blockquote>
 <blockquote>
-<p>定时器/计数器3，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。STC8G、STC8H系列还支持时钟8位预分频功能。</p>
+<p>串口4，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。</p>
 </blockquote>
-<blockquote>
-<p>定时器/计数器4，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。STC8G、STC8H系列还支持时钟8位预分频功能。</p>
-</blockquote>
+<br>
+
 <h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="1-串口初始化函数"><a href="#1-串口初始化函数" class="headerlink" title="1. 串口初始化函数"></a>1. 串口初始化函数</h4><table>
 <thead>
 <tr>
@@ -419,6 +418,8 @@
 <td align="center">串口4初始化</td>
 </tr>
 </tbody></table>
+<br>
+
 <h5 id="UART-InitType-结构体说明"><a href="#UART-InitType-结构体说明" class="headerlink" title="UART_InitType 结构体说明"></a>UART_InitType 结构体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct 
 &#123;
   UARTMode_Type Mode;        &#x2F;&#x2F;工作模式
@@ -430,6 +431,8 @@
   FUNSTATE Relay; 		     &#x2F;&#x2F;中继广播
   FUNSTATE RxEnable;         &#x2F;&#x2F;接收使能控制位
 &#125; UART_InitType;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="UARTMode-Type-枚举体说明"><a href="#UARTMode-Type-枚举体说明" class="headerlink" title="UARTMode_Type 枚举体说明"></a>UARTMode_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
 	UART_SyncShift  &#x3D; 0x00,  &#x2F;&#x2F;模式0：同步移位串行模式
@@ -437,6 +440,8 @@
 	UART_9bit_Fixed &#x3D; 0x02,  &#x2F;&#x2F;模式2：9位波特率固定模式
 	UART_9bit_BRTx  &#x3D; 0x03   &#x2F;&#x2F;模式3：9位波特率可变模式
 &#125;	UARTMode_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="UARTBRTGen-Type-枚举体说明"><a href="#UARTBRTGen-Type-枚举体说明" class="headerlink" title="UARTBRTGen_Type 枚举体说明"></a>UARTBRTGen_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
 	UART_BRT_TIM1 &#x3D; 0x00,   &#x2F;&#x2F;定时器1做波特率发生器
@@ -444,11 +449,15 @@
 	UART_BRT_TIM3 &#x3D; 0x02,	&#x2F;&#x2F;定时器3做波特率发生器
 	UART_BRT_TIM4 &#x3D; 0x03 	&#x2F;&#x2F;定时器4做波特率发生器
 &#125;	UARTBRTGen_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="UARTBRTMode-Type-枚举体说明"><a href="#UARTBRTMode-Type-枚举体说明" class="headerlink" title="UARTBRTMode_Type 枚举体说明"></a>UARTBRTMode_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
     UART_BRT_1T  &#x3D; 0x00,   &#x2F;&#x2F; 波特率发生器1T模式 
     UART_BRT_12T &#x3D; 0x01    &#x2F;&#x2F; 波特率发生器12T模式
 &#125;	UARTBRTMode_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h4 id="2-串口中断初始化函数"><a href="#2-串口中断初始化函数" class="headerlink" title="2. 串口中断初始化函数"></a>2. 串口中断初始化函数</h4><table>
 <thead>
 <tr>
@@ -476,6 +485,8 @@
 <blockquote>
 <p>注：NVICPri_Type 枚举体的具体描述，详情见《中断管理》章节。</p>
 </blockquote>
+<br>
+
 <h4 id="3-串口中断服务函数"><a href="#3-串口中断服务函数" class="headerlink" title="3. 串口中断服务函数"></a>3. 串口中断服务函数</h4><table>
 <thead>
 <tr>
@@ -500,6 +511,8 @@
 <td align="center">串口4中断服务</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="4-串口端口切换函数"><a href="#4-串口端口切换函数" class="headerlink" title="4. 串口端口切换函数"></a>4. 串口端口切换函数</h4><table>
 <thead>
 <tr>
@@ -524,6 +537,8 @@
 <td align="center">串口4端口切换</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="5-串口获取接收标志函数"><a href="#5-串口获取接收标志函数" class="headerlink" title="5. 串口获取接收标志函数"></a>5. 串口获取接收标志函数</h4><table>
 <thead>
 <tr>
@@ -548,6 +563,8 @@
 <td align="center">串口4获取接收标志（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="6-串口获取输出标志函数"><a href="#6-串口获取输出标志函数" class="headerlink" title="6. 串口获取输出标志函数"></a>6. 串口获取输出标志函数</h4><table>
 <thead>
 <tr>
@@ -572,6 +589,8 @@
 <td align="center">串口4获取输出标志（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="7-串口清理接收标志函数"><a href="#7-串口清理接收标志函数" class="headerlink" title="7. 串口清理接收标志函数"></a>7. 串口清理接收标志函数</h4><table>
 <thead>
 <tr>
@@ -596,6 +615,8 @@
 <td align="center">串口4清理接收标志（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="8-串口清理输出标志函数"><a href="#8-串口清理输出标志函数" class="headerlink" title="8. 串口清理输出标志函数"></a>8. 串口清理输出标志函数</h4><table>
 <thead>
 <tr>
@@ -620,6 +641,8 @@
 <td align="center">串口4清理输出标志（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="9-串口获取忙标志函数"><a href="#9-串口获取忙标志函数" class="headerlink" title="9. 串口获取忙标志函数"></a>9. 串口获取忙标志函数</h4><table>
 <thead>
 <tr>
@@ -644,6 +667,8 @@
 <td align="center">串口4获取忙标志（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="10-串口设置忙标志函数"><a href="#10-串口设置忙标志函数" class="headerlink" title="10. 串口设置忙标志函数"></a>10. 串口设置忙标志函数</h4><table>
 <thead>
 <tr>
@@ -668,6 +693,8 @@
 <td align="center">串口4设置忙标志（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="11-串口清理忙标志函数"><a href="#11-串口清理忙标志函数" class="headerlink" title="11. 串口清理忙标志函数"></a>11. 串口清理忙标志函数</h4><table>
 <thead>
 <tr>
@@ -692,6 +719,8 @@
 <td align="center">串口4清理忙标志（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="12-串口发送一个字节函数"><a href="#12-串口发送一个字节函数" class="headerlink" title="12.串口发送一个字节函数"></a>12.串口发送一个字节函数</h4><table>
 <thead>
 <tr>
@@ -716,6 +745,8 @@
 <td align="center">串口4发送一个字节</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="13-串口接收一个字节函数"><a href="#13-串口接收一个字节函数" class="headerlink" title="13. 串口接收一个字节函数"></a>13. 串口接收一个字节函数</h4><table>
 <thead>
 <tr>
@@ -740,6 +771,8 @@
 <td align="center">串口4接收一个字节</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="14-串口发送一个字符串函数"><a href="#14-串口发送一个字符串函数" class="headerlink" title="14. 串口发送一个字符串函数"></a>14. 串口发送一个字符串函数</h4><table>
 <thead>
 <tr>
@@ -764,6 +797,8 @@
 <td align="center">串口4发送一个字符串</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="15-串口发送一个数组函数"><a href="#15-串口发送一个数组函数" class="headerlink" title="15.串口发送一个数组函数"></a>15.串口发送一个数组函数</h4><table>
 <thead>
 <tr>
@@ -788,6 +823,9 @@
 <td align="center">串口4发送一个数组</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><h4 id="1-定时器演示"><a href="#1-定时器演示" class="headerlink" title="1. 定时器演示"></a>1. 定时器演示</h4><h4 id="1-串口初始化演示"><a href="#1-串口初始化演示" class="headerlink" title="1. 串口初始化演示"></a>1. 串口初始化演示</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">void STC8x_UART_Config(void)
 &#123;
 	UART_InitType UART_InitStruct&#x3D;&#123;0&#125;;	&#x2F;&#x2F; 定义串口初始化结构体

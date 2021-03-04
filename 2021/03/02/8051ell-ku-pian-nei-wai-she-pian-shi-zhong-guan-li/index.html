@@ -384,6 +384,8 @@
 <img src=" ../../../../images/8051_ell_lib/doc/system-clock-framework.png" style="zoom:75%;" />
 
 <p>要注意的是，切换内部主时钟源的时候，从IRC振荡电路停振到使能，要经过一段时间振荡器的频率才会稳定。所以要等到时钟源稳定以后再切换。STC8A、STC8C、STC8F系列时钟管理方法一致，STC8G、STC8H系列时钟管理方法一致。</p>
+<br>
+
 <h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="系统时钟初始化函数"><a href="#系统时钟初始化函数" class="headerlink" title="系统时钟初始化函数"></a>系统时钟初始化函数</h4><table>
 <thead>
 <tr>
@@ -400,6 +402,9 @@
 <td align="center">获取系统时钟频率</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h5 id="SYSCLK-InitType-结构体说明"><a href="#SYSCLK-InitType-结构体说明" class="headerlink" title="SYSCLK_InitType  结构体说明"></a>SYSCLK_InitType  结构体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct
 &#123;
     MCLKSrc_Type MCLKSrc;  &#x2F;* 主时钟源 *&#x2F;
@@ -419,6 +424,8 @@
     IRCBand_Type  IRCBand; &#x2F;* 只有STC8G、STC8H系列才有 *&#x2F;
 
 &#125;   SYSCLK_InitType;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="MCLKSrc-Type-枚举体说明"><a href="#MCLKSrc-Type-枚举体说明" class="headerlink" title="MCLKSrc_Type 枚举体说明"></a>MCLKSrc_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
     AUTO &#x3D; 0x00,
@@ -427,6 +434,8 @@
     XOSC &#x3D; 0x03,  &#x2F;* 外部时钟源 *&#x2F;
     X32KSC &#x3D; 0x04  &#x2F;* 外部32K时钟晶振控制，只有STC8H系列才有 *&#x2F;
 &#125;   MCLKSrc_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="MCLKSrc-Type-枚举体说明-1"><a href="#MCLKSrc-Type-枚举体说明-1" class="headerlink" title="MCLKSrc_Type 枚举体说明"></a>MCLKSrc_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
     TRIM0 &#x3D; 0x00, &#x2F;* 不调整 *&#x2F;
@@ -434,11 +443,15 @@
     TRIM2 &#x3D; 0x02, &#x2F;* 调整约0.04%  *&#x2F;
     TRIM3 &#x3D; 0x03  &#x2F;* 调整约0.10%  *&#x2F;
 &#125;   LIRCTRIM_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="SCLKOut-Type-枚举体说明"><a href="#SCLKOut-Type-枚举体说明" class="headerlink" title="SCLKOut_Type 枚举体说明"></a>SCLKOut_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
     SCLK_OUT_P54 &#x3D; 0, &#x2F;* 输出到P54 *&#x2F;
     SCLK_OUT_P16      &#x2F;* 输出到P16 *&#x2F;
 &#125;   SCLKOut_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="XOSCFilter-Type-枚举体说明"><a href="#XOSCFilter-Type-枚举体说明" class="headerlink" title="XOSCFilter_Type 枚举体说明"></a>XOSCFilter_Type 枚举体说明</h5><blockquote>
 <p>只有STC8H系列才有</p>
 </blockquote>
@@ -449,6 +462,8 @@
     XOSC_Filter_66MHz  &#x3D; 0x02,  &#x2F;* 过滤66Mhz  *&#x2F;
     XOSC_Filter_Null   &#x3D; 0x03   &#x2F;* 过滤无效 *&#x2F;
 &#125;   XOSCFilter_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="IRCBand-Type-枚举体说明"><a href="#IRCBand-Type-枚举体说明" class="headerlink" title="IRCBand_Type 枚举体说明"></a>IRCBand_Type 枚举体说明</h5><blockquote>
 <p>只有STC8G、STC8H系列才有</p>
 </blockquote>
@@ -458,6 +473,8 @@
     IRC_Band_33MHz &#x3D; 0x01, &#x2F;* 只有STC8G系列才有 *&#x2F;
     IRC_Band_35MHz &#x3D; 0x01  &#x2F;* 只有STC8H系列才有 *&#x2F;
 &#125;   IRCBand_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><h4 id="1-系统时钟初始化"><a href="#1-系统时钟初始化" class="headerlink" title="1.系统时钟初始化"></a>1.系统时钟初始化</h4><p>我们提供两种办法来配置系统时钟频率，一种是通过stc-isp助手直接设置，一种是程序手动设置，都非常简单。</p>
 <p>如果是使用内部IRC时钟，就先选择对应的IRC频率：</p>
 <img src=" ../../../../images/8051_ell_lib/doc/system-clock-manage1.jpg" style="zoom:75%;" />

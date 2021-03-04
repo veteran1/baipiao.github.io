@@ -384,6 +384,8 @@
 
 <p>为了统一管理，所有关于GPIO口的操作，基本都归结在本模块，其中就包括各外设的工作IO口切换。但是为了模块化讲解，关于IO口切换的内容，放在对应的外设模块里面作具体说明。</p>
 <p><strong>特别注意：</strong>建议整个芯片的工作电流不要超过70mA,IO口的工作电流控制在20mA左右。</p>
+<br>
+
 <h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="1-GPIO初始化函数"><a href="#1-GPIO初始化函数" class="headerlink" title="1. GPIO初始化函数"></a>1. GPIO初始化函数</h4><blockquote>
 <p>GPIO_Px：必须是0~7</p>
 </blockquote>
@@ -411,6 +413,9 @@
 <td align="center">IO口推挽输出模式（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h4 id="2-GPIO上拉电阻控制函数"><a href="#2-GPIO上拉电阻控制函数" class="headerlink" title="2. GPIO上拉电阻控制函数"></a>2. GPIO上拉电阻控制函数</h4><blockquote>
 <p>GPIO_Px：必须是0~7</p>
 </blockquote>
@@ -430,6 +435,9 @@
 <td align="center">IO口禁止上拉4.1k电阻（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h4 id="3-GPIO施密特触发器控制函数"><a href="#3-GPIO施密特触发器控制函数" class="headerlink" title="3. GPIO施密特触发器控制函数"></a>3. GPIO施密特触发器控制函数</h4><blockquote>
 <p>GPIO_Px：必须是0~7</p>
 </blockquote>
@@ -449,6 +457,9 @@
 <td align="center">IO口禁止施密特触发器（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h4 id="4-GPIO电平翻转速度控制函数"><a href="#4-GPIO电平翻转速度控制函数" class="headerlink" title="4. GPIO电平翻转速度控制函数"></a>4. GPIO电平翻转速度控制函数</h4><blockquote>
 <p>GPIO_Px：必须是0~7</p>
 </blockquote>
@@ -468,6 +479,9 @@
 <td align="center">IO口高速翻转电平（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h4 id="5-GPIO驱动电流控制函数"><a href="#5-GPIO驱动电流控制函数" class="headerlink" title="5. GPIO驱动电流控制函数"></a>5. GPIO驱动电流控制函数</h4><blockquote>
 <p>GPIO_Px：必须是0~7</p>
 </blockquote>
@@ -487,6 +501,9 @@
 <td align="center">IO口大驱动电流（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h4 id="6-GPIO引脚翻转控制函数"><a href="#6-GPIO引脚翻转控制函数" class="headerlink" title="6. GPIO引脚翻转控制函数"></a>6. GPIO引脚翻转控制函数</h4><blockquote>
 <p>GPIO_Px：必须是0~7</p>
 </blockquote>
@@ -502,6 +519,9 @@
 <td align="center">IO口翻转控制（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h5 id="IO口Pin-参数宏定义说明"><a href="#IO口Pin-参数宏定义说明" class="headerlink" title="IO口Pin 参数宏定义说明"></a>IO口Pin 参数宏定义说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;* GPIO *&#x2F;
 #define	GPIO_P0      &#x2F;&#x2F;IO P0
 #define	GPIO_P1      &#x2F;&#x2F;IO P1
@@ -522,6 +542,8 @@
 #define	Pin_6    0x40  &#x2F;&#x2F;IO Pin Px.6
 #define	Pin_7    0x80  &#x2F;&#x2F;IO Pin Px.7
 #define	Pin_All  0xFF  &#x2F;&#x2F;IO All  Pin	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;STC8x_GPIO.h&quot;
 
 int main(void)

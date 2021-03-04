@@ -387,17 +387,19 @@
 <p>定时器/计数器1，工作模式有三种：<code>16位自动重装模式</code>、<code>16位不可重装载模式</code>、<code>8位自动重装载模式</code>。有四级中断优先级（0~3），开启中断后，硬件自动清标志位，不需要软件清理。可作为串口1的波特率发生器（12T模式下，波特率最大38400）； 可编程时钟输出。</p>
 </blockquote>
 <blockquote>
-<p>定时器/计数器2,固定工作模式：<code>16位自动重装模式</code>。固定为0级中断优先级，开启中断后，需要软件清中断标志位。可作为串口1~4的波特率发生器（12T模式下，波特率最大38400）；可编程时钟输出。</p>
+<p>定时器/计数器2,固定工作模式：<code>16位自动重装模式</code>。固定为0级中断优先级，开启中断后，需要软件清中断标志位。可作为串口1~4的波特率发生器（12T模式下，波特率最大38400）；可编程时钟输出。STC8G、STC8H系列还支持时钟8位预分频功能。</p>
 </blockquote>
 <blockquote>
-<p>定时器/计数器3,固定工作模式：<code>16位自动重装模式</code>。固定为0级中断优先级，开启中断后，需要软件清中断标志位。可作为串口3的波特率发生器（12T模式下，波特率最大38400）；可编程时钟输出。</p>
+<p>定时器/计数器3,固定工作模式：<code>16位自动重装模式</code>。固定为0级中断优先级，开启中断后，需要软件清中断标志位。可作为串口3的波特率发生器（12T模式下，波特率最大38400）；可编程时钟输出。STC8G、STC8H系列还支持时钟8位预分频功能。</p>
 </blockquote>
 <blockquote>
-<p>定时器/计数器4,固定工作模式：<code>16位自动重装模式</code>。固定为0级中断优先级，开启中断后，需要软件清中断标志位。可作为串口4的波特率发生器（12T模式下，波特率最大38400）；可编程时钟输出。</p>
+<p>定时器/计数器4,固定工作模式：<code>16位自动重装模式</code>。固定为0级中断优先级，开启中断后，需要软件清中断标志位。可作为串口4的波特率发生器（12T模式下，波特率最大38400）；可编程时钟输出。STC8G、STC8H系列还支持时钟8位预分频功能。</p>
 </blockquote>
 <blockquote>
 <p>掉电唤醒定时器,是一个15位的计数器，用于唤醒处于掉电模式的MCU。</p>
 </blockquote>
+<br>
+
 <h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="1-定时器初始化函数"><a href="#1-定时器初始化函数" class="headerlink" title="1. 定时器初始化函数"></a>1. 定时器初始化函数</h4><table>
 <thead>
 <tr>
@@ -426,6 +428,8 @@
 <td align="center">定时器4初始化</td>
 </tr>
 </tbody></table>
+<br>
+
 <h5 id="TIMER-InitType-结构体说明："><a href="#TIMER-InitType-结构体说明：" class="headerlink" title="TIMER_InitType 结构体说明："></a>TIMER_InitType 结构体说明：</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> 
 <span class="token punctuation">&#123;</span>
  <span class="token class-name">uint8_t</span> SysClkDiv<span class="token punctuation">;</span>       <span class="token comment">//定时器时钟预分频器，只有STC8G、STC8H才有</span>
@@ -436,11 +440,15 @@
  <span class="token class-name">uint16_t</span> value<span class="token punctuation">;</span>          <span class="token comment">// 定时器定时时间（us）</span>
  FUNSTATE run<span class="token punctuation">;</span>            <span class="token comment">// 运行标志位</span>
 <span class="token punctuation">&#125;</span> TIMER_InitType<span class="token punctuation">;</span>	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="TIMERType-Type-枚举体说明："><a href="#TIMERType-Type-枚举体说明：" class="headerlink" title="TIMERType_Type 枚举体说明："></a>TIMERType_Type 枚举体说明：</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">enum</span>
 <span class="token punctuation">&#123;</span>
   TIMER_Type_Timer   <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">,</span>   <span class="token comment">// 作为定时器</span>
   TIMER_Type_Counter <span class="token operator">=</span> <span class="token number">0x01</span>     <span class="token comment">// 作为计数器</span>
 <span class="token punctuation">&#125;</span> TIMERType_Type<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="TIMERMode-Type-枚举体说明："><a href="#TIMERMode-Type-枚举体说明：" class="headerlink" title="TIMERMode_Type 枚举体说明："></a>TIMERMode_Type 枚举体说明：</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">enum</span>
 <span class="token punctuation">&#123;</span>
 	TIMER_16BitAutoReload       <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">,</span>  <span class="token comment">// 模式 0: 十六位自动重装载模式</span>
@@ -448,11 +456,15 @@
 	TIMER_8BitAutoReload        <span class="token operator">=</span> <span class="token number">0x02</span><span class="token punctuation">,</span>  <span class="token comment">// 模式 2: 八位自动重装载模式</span>
 	TIMER_16BitAutoReloadNoMask <span class="token operator">=</span> <span class="token number">0x03</span>   <span class="token comment">// 模式 3: 不可屏蔽中断的十六位自动重装载模式</span>
 <span class="token punctuation">&#125;</span>	TIMERMode_Type<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h5 id="TIMERTCycle-Type-枚举体说明："><a href="#TIMERTCycle-Type-枚举体说明：" class="headerlink" title="TIMERTCycle_Type 枚举体说明："></a>TIMERTCycle_Type 枚举体说明：</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">enum</span>
 <span class="token punctuation">&#123;</span>
     TIMER_TCY_1T  <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">,</span>   <span class="token comment">//  1T模式: 执行一条指令需要1个周期</span>
 	TIMER_TCY_12T <span class="token operator">=</span> <span class="token number">0x01</span>    <span class="token comment">// 12T模式: 执行一条指令需要12个周期（实际是系统时钟12分频）</span>
 <span class="token punctuation">&#125;</span>	TIMERTCycle_Type<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
 <h4 id="2-定时中断初始化函数"><a href="#2-定时中断初始化函数" class="headerlink" title="2. 定时中断初始化函数"></a>2. 定时中断初始化函数</h4><table>
 <thead>
 <tr>
@@ -484,6 +496,9 @@
 <blockquote>
 <p>注：NVICPri_Type 枚举体的具体描述，详情见《中断管理》章节。</p>
 </blockquote>
+<br>
+
+
 <h4 id="3-定时器中断服务函数"><a href="#3-定时器中断服务函数" class="headerlink" title="3. 定时器中断服务函数"></a>3. 定时器中断服务函数</h4><table>
 <thead>
 <tr>
@@ -512,6 +527,9 @@
 <td align="center">定时器4中断服务</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h4 id="4-定时器清中断标志位函数"><a href="#4-定时器清中断标志位函数" class="headerlink" title="4. 定时器清中断标志位函数"></a>4. 定时器清中断标志位函数</h4><table>
 <thead>
 <tr>
@@ -532,6 +550,9 @@
 <td align="center">定时器4清中断标志（宏函数）</td>
 </tr>
 </tbody></table>
+<br>
+
+
 <h4 id="5-掉电唤醒定时器初始化函数"><a href="#5-掉电唤醒定时器初始化函数" class="headerlink" title="5. 掉电唤醒定时器初始化函数"></a>5. 掉电唤醒定时器初始化函数</h4><table>
 <thead>
 <tr>
@@ -551,6 +572,8 @@
 <blockquote>
 <p>State： ENABLE / DIASBLE</p>
 </blockquote>
+<br>
+
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><h4 id="1-定时器演示"><a href="#1-定时器演示" class="headerlink" title="1. 定时器演示"></a>1. 定时器演示</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"8051_ELL_Lib.h"</span></span>
 
 <span class="token keyword">void</span> <span class="token function">STC8x_Config</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
@@ -1152,23 +1175,23 @@ int main(void)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/02/18/8051ell-ku-jie-shao/">
+                <a href="/2021/03/01/8051ell-ku-pian-nei-wai-she-pian-ke-bian-cheng-ji-shu-qi/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库介绍">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-可编程计数器">
                         
-                        <span class="card-title">8051ELL库介绍</span>
+                        <span class="card-title">8051ELL库-片内外设篇-可编程计数器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要介绍 8051 ELL函数库的由来和特性
+                            本文主要讲解 8051 ELL函数库的可编程计数器（PCA）
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
                             </span>
                         <span class="publish-author">
                             
