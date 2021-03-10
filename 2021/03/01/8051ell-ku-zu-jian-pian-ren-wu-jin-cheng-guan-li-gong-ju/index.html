@@ -468,14 +468,15 @@ void TIMER0_ISRQ_Handler(void) &#x2F;&#x2F;定时器0中断服务函数
 
 int main(void)  &#x2F;&#x2F;main 函数
 &#123;
+	STC8x_PER_Init(); &#x2F;&#x2F; 调用MCU外设初始化函数   
     TMT_Init();  &#x2F;&#x2F;进程初始化函数尽量放在定时器初始化前面。
-	STC8x_PER_Init(); &#x2F;&#x2F; 调用MCU外设初始化函数
- 	TMT.Create(App_lamp,500); &#x2F;&#x2F;500ms运行1次
+ 	TMT.Create(App_lamp,500); &#x2F;&#x2F;500 ticks时间 运行1次
+     
 	for(;;)  &#x2F;&#x2F;无限循环体
 	&#123;
 		TMT.run();&#x2F;&#x2F; 调用任务进程处理回调函数 
 	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
