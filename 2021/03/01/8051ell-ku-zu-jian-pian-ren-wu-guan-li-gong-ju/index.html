@@ -429,6 +429,27 @@
 </tbody></table>
 <br>
 
+<h5 id="TaskState-Type-枚举体说明"><a href="#TaskState-Type-枚举体说明" class="headerlink" title="TaskState_Type 枚举体说明"></a>TaskState_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+	Task_Continue &#x3D; 1,      &#x2F;* 任务继续运行 *&#x2F;
+	Task_Stop &#x3D; !Task_Continue &#x2F;* 任务暂停运行 *&#x2F;
+&#125;   TaskState_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="CreateFun-Type-枚举体说明"><a href="#CreateFun-Type-枚举体说明" class="headerlink" title="CreateFun_Type 枚举体说明"></a>CreateFun_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+    Create_Fail &#x3D; 0x00,   &#x2F;* 创建任务失败 *&#x2F;
+    Create_Success &#x3D; !Create_Fail &#x2F;* 创建任务成功 *&#x2F;
+&#125;   CreateFun_Type;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="CreateFun-Type-枚举体说明-1"><a href="#CreateFun-Type-枚举体说明-1" class="headerlink" title="CreateFun_Type 枚举体说明"></a>CreateFun_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+    Delete_Fail &#x3D; 0x00,  &#x2F;* 删除任务失败 *&#x2F;
+    Delete_Success &#x3D; !Delete_Fail  &#x2F;* 删除任务成功 *&#x2F;
+&#125;   DeleteFun_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="CreateFun-Type-枚举体说明-2"><a href="#CreateFun-Type-枚举体说明-2" class="headerlink" title="CreateFun_Type 枚举体说明"></a>CreateFun_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+    Ctrl_Fail &#x3D; 0x00,   &#x2F;* 控制任务失败 *&#x2F;
+    Ctrl_Success &#x3D; !Delete_Fail  &#x2F;* 控制任务失败成功 *&#x2F;
+&#125;   CtrlFun_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><ol>
 <li>在Lib_CFG文件里，配置相关参数 ；</li>
 </ol>
@@ -458,7 +479,7 @@ void TIMER0_ISRQ_Handler(void) &#x2F;&#x2F;定时器0中断服务函数
 </ol>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">void App_lamp(void) &#x2F;&#x2F;任务进程必须是void型 无形参
 &#123;
-    P10 &#x3D; !P10;
+    GPIO_TOGGLE_PIN(GPIO_P1,Pin_0);
 &#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="4">
@@ -468,15 +489,23 @@ void TIMER0_ISRQ_Handler(void) &#x2F;&#x2F;定时器0中断服务函数
 
 int main(void)  &#x2F;&#x2F;main 函数
 &#123;
-	STC8x_PER_Init(); &#x2F;&#x2F; 调用MCU外设初始化函数   
-    TMT_Init();  &#x2F;&#x2F;进程初始化函数尽量放在定时器初始化前面。
- 	TMT.Create(App_lamp,500); &#x2F;&#x2F;500 ticks时间 运行1次
-     
+	STC8x_PER_Init(); &#x2F;&#x2F; 调用MCU外设初始化函数  主要初始化定时器，这里给定时器1ms中断一次 
+    TMT_Init();  &#x2F;&#x2F;任务进程初始化函数。
+
+	if(TMT.Create(Task1_Led,500) &#x3D;&#x3D; Create_Success)
+	&#123;
+		DEBUG_LOG(&quot;success&quot;);
+	&#125;
+	else
+	&#123;
+		DEBUG_LOG(&quot;fail&quot;);		
+	&#125;
+
 	for(;;)  &#x2F;&#x2F;无限循环体
 	&#123;
 		TMT.run();&#x2F;&#x2F; 调用任务进程处理回调函数 
 	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
