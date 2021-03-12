@@ -431,8 +431,8 @@
 
 <h5 id="TaskState-Type-枚举体说明"><a href="#TaskState-Type-枚举体说明" class="headerlink" title="TaskState_Type 枚举体说明"></a>TaskState_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
-	Task_Continue &#x3D; 1,      &#x2F;* 任务继续运行 *&#x2F;
-	Task_Stop &#x3D; !Task_Continue &#x2F;* 任务暂停运行 *&#x2F;
+	Task_Stop &#x3D; 0x00,      &#x2F;* 任务暂停运行 *&#x2F;
+	Task_Continue &#x3D; !Task_Stop &#x2F;* 任务继续运行 *&#x2F;
 &#125;   TaskState_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="CreateFun-Type-枚举体说明"><a href="#CreateFun-Type-枚举体说明" class="headerlink" title="CreateFun_Type 枚举体说明"></a>CreateFun_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
@@ -1013,18 +1013,18 @@ int main(void)  &#x2F;&#x2F;main 函数
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/01/8051ell-ku-pian-nei-wai-she-pian-ding-shi-qi/">
+                <a href="/2021/03/01/8051ell-ku-pian-nei-wai-she-pian-ke-bian-cheng-ji-shu-qi/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-定时器">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-可编程计数器">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-定时器</span>
+                        <span class="card-title">8051ELL库-片内外设篇-可编程计数器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的定时器
+                            本文主要讲解 8051 ELL函数库的可编程计数器（PCA）
                         
                     </div>
                     <div class="publish-info">
