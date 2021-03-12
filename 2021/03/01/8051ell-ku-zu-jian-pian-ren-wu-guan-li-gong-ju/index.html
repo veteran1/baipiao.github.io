@@ -489,7 +489,7 @@ void TIMER0_ISRQ_Handler(void) &#x2F;&#x2F;定时器0中断服务函数
 
 int main(void)  &#x2F;&#x2F;main 函数
 &#123;
-	STC8x_PRE_Init(); &#x2F;&#x2F; 调用MCU外设初始化函数  主要初始化定时器，这里给定时器1ms中断一次 
+	STC8x_System_Init(); &#x2F;&#x2F; 调用MCU外设初始化函数  主要初始化定时器，这里给定时器1ms中断一次 
     TMT_Init();  &#x2F;&#x2F;任务进程初始化函数。
 
 	if(TMT.Create(Task1_Led,500) &#x3D;&#x3D; Create_Success)
