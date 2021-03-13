@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="8051ELL库-组件篇-任务管理工具, 泽文i 的博客">
+    <meta name="keywords" content="8051ELL库-片内外设篇-串口, 泽文i 的博客">
     <meta name="description" content="专注 真诚">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>8051ELL库-组件篇-任务管理工具 | 泽文i 的博客</title>
+    <title>8051ELL库-片内外设篇-串口 | 泽文i 的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -208,7 +208,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">8051ELL库-组件篇-任务管理工具</h1>
+                    <h1 class="description center-align post-title">8051ELL库-片内外设篇-串口</h1>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-01
+                    2021-03-04
                 </div>
                 
 
@@ -379,19 +379,22 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="组件介绍"><a href="#组件介绍" class="headerlink" title="组件介绍"></a>组件介绍</h2><p>任务管理工具的本质是时间片进程管理方法。该组件优化了这种分配时间进程的方式，更加灵活易用。</p>
-<h3 id="详细内容"><a href="#详细内容" class="headerlink" title="详细内容"></a>详细内容</h3><p>裸机开发中，我们常用的一种程序框架是前后台系统，即中断服务函数为前台，main函数内的无限循环体为后台。变量在前台计数，到达设定的计数值（即一定时间）后，置出相应的标志位，然后在后台判断，并执行相应的代码。</p>
-<img src=" ../../../../images/8051_ell_lib/doc/TMT_1.png" style="zoom:75%;" />
-
-<p>传统的前后台系统，虽然是一个比较合理的框架，但是有一些缺点，非常令人头疼。比如变量的传递，尤其设置标志位，一般都是全局变量，且跨文件调用，当分配的全局变量过多时，会降低代码的阅读性和维护性，同时也会存在堆栈溢出的风险，大大影响系统的稳定性。</p>
-<p>本组件模块在前后台系统的基础上，进行了优化，通过结构体封装+中断回调函数的方式，基本上避免了以上所述的问题，使我们整个的程序框架更加稳定简洁。</p>
-<p>要说明的是，本模块根据时间片来管理任务进程的，无优先级。任务的执行顺序与分配的时间有关，时间越小，越先执行。如果两个任务被分配的时间相同，先分配的任务，先执行。</p>
-<p>但是不建议将两个任务分配相同的时间或者特别相近，避免发出冲突和不可预知的问题。</p>
-<img src=" ../../../../images/8051_ell_lib/doc/TMT_2.png" style="zoom:75%;" />
-
+                <h2 id="STC8系列"><a href="#STC8系列" class="headerlink" title="STC8系列"></a>STC8系列</h2><h3 id="外设介绍"><a href="#外设介绍" class="headerlink" title="外设介绍"></a>外设介绍</h3><p>STC8系列单片机有4个全双工异步通信接口（串口1\2\3\4）。每个串口的通讯口均可以通过功能管脚的切换功能切换到多组端口，从而实现一个串口复用为多个串口的功能。部分型号可能有所不同。</p>
+<blockquote>
+<p>串口1，工作模式有四种：<code>同步移位串行模式</code>、<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>、<code>可变波特率9位数据模式</code>。有四级中断优先级（0~3），在开启中断后，需要软件清理标志位。由定时器1、2做波特率发生器。可以进行多机通信，中继广播。</p>
+</blockquote>
+<blockquote>
+<p>串口2，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。</p>
+</blockquote>
+<blockquote>
+<p>串口3，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。</p>
+</blockquote>
+<blockquote>
+<p>串口4，工作模式有两种：<code>可变波特率8位数据模式</code>、<code>固定波特率9位数据模式</code>。有四级中断优先级（0~3），开启中断后，需要软件清理标志位。由定时器2做波特率发生器。可中继广播。</p>
+</blockquote>
 <br>
 
-<h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><table>
+<h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="1-串口初始化函数"><a href="#1-串口初始化函数" class="headerlink" title="1. 串口初始化函数"></a>1. 串口初始化函数</h4><table>
 <thead>
 <tr>
 <th align="center">函数名</th>
@@ -399,98 +402,516 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><strong>TMT.run</strong>()</td>
-<td align="center">TMT运行</td>
+<td align="center">FSCSTATE <strong>UART1_Init</strong>(const UART_InitType * uartx)</td>
+<td align="center">串口1初始化</td>
 </tr>
 <tr>
-<td align="center"><strong>TMT.Tick</strong>()</td>
-<td align="center">TMT节拍</td>
+<td align="center">FSCSTATE <strong>UART2_Init</strong>(const UART_InitType * uartx)</td>
+<td align="center">串口2初始化</td>
 </tr>
 <tr>
-<td align="center"><strong>TMT.Create</strong>(void (*taskFunc) (void),uint16_t triTime)</td>
-<td align="center">创建进程</td>
+<td align="center">FSCSTATE <strong>UART3_Init</strong>(const UART_InitType * uartx)</td>
+<td align="center">串口3初始化</td>
 </tr>
 <tr>
-<td align="center"><strong>TMT.Delete</strong>(void (*taskFunc) (void))</td>
-<td align="center">删除进程</td>
-</tr>
-<tr>
-<td align="center"><strong>TMT.TimeCtrl</strong>(void (*taskFunc) (void),uint16_t triTime)</td>
-<td align="center">进程时间控制</td>
-</tr>
-<tr>
-<td align="center"><strong>TMT.runCtrl</strong>(void (*taskFunc) (void),PRO_STATE state)</td>
-<td align="center">进程状态控制</td>
-</tr>
-<tr>
-<td align="center">void <strong>TMT_Init</strong>()</td>
-<td align="center">TMT初始化</td>
+<td align="center">FSCSTATE <strong>UART4_Init</strong>(const UART_InitType * uartx)</td>
+<td align="center">串口4初始化</td>
 </tr>
 </tbody></table>
 <br>
 
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><ol>
-<li>在Lib_CFG文件里，配置相关参数 ；</li>
-</ol>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">
-&#x2F;*--------------------------------------------------------
-| @Description: STC8x Componets config                   |
---------------------------------------------------------*&#x2F;
-
-&#x2F;**
-  * @name    TMT
-  * @brief   Task time tool
-***&#x2F;
-#define  COM_LIB_TMT_CTRL              (1)    &#x2F;&#x2F; &quot;1&quot; 开启, &quot;0&quot;关闭 
-#define  COM_LIB_TMT_TASK_NUM_MAX      (8)    &#x2F;&#x2F; 最大任务数量
-#define  COM_LIB_NVIC_TIMER_ISR_ENABLE    ET0 &#x3D; 1  &#x2F;&#x2F;定时器中断打开（根据你使用的定时器来选择）
-#define  COM_LIB_NVIC_TIMER_ISR_DISABLE   ET0 &#x3D; 0  &#x2F;&#x2F;定时器中断关闭（根据你使用的定时器来选择）
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="2">
-<li>在定时器中断服务函数里，调用任务时间处理回调函数 ；</li>
-</ol>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;TMT.h&quot;  &#x2F;&#x2F;调用头文件；
-
-void TIMER0_ISRQ_Handler(void) &#x2F;&#x2F;定时器0中断服务函数
+<h5 id="UART-InitType-结构体说明"><a href="#UART-InitType-结构体说明" class="headerlink" title="UART_InitType 结构体说明"></a>UART_InitType 结构体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct 
 &#123;
-    &#x2F;*
-    调用TMT节拍函数，为TMT提供心跳节拍，
-    节拍时间根据你设置的定时器中断时间来决定
-    *&#x2F;
-    TMT.Tick(); 
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="3">
-<li>在自己编写的C文件里，编写一个任务进程。</li>
-</ol>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">void App_lamp(void) &#x2F;&#x2F;任务进程必须是void型 无形参
+  UARTMode_Type Mode;        &#x2F;&#x2F;工作模式
+  UARTBRTGen_Type BRTGen;    &#x2F;&#x2F;波特率发生器
+  UARTBRTMode_Type BRTMode;  &#x2F;&#x2F;波特率发生器时钟模式
+  FUNSTATE BRTDouble;        &#x2F;&#x2F;波特率加倍（只有串口1有）
+  uint32 BaudRate;           &#x2F;&#x2F;波特率值
+  FUNSTATE MulitComm; 		 &#x2F;&#x2F;多机通信（只有串口1有）
+  FUNSTATE Relay; 		     &#x2F;&#x2F;中继广播
+  FUNSTATE RxEnable;         &#x2F;&#x2F;接收使能控制位
+&#125; UART_InitType;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
+<h5 id="UARTMode-Type-枚举体说明"><a href="#UARTMode-Type-枚举体说明" class="headerlink" title="UARTMode_Type 枚举体说明"></a>UARTMode_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
-    GPIO_TOGGLE_PIN(GPIO_P1,Pin_0);
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="4">
-<li>在main里面调用进程初始化，同时在循环体里面调用TMT运行函数。</li>
-</ol>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">extern void App_lamp(void);
+	UART_SyncShift  &#x3D; 0x00,  &#x2F;&#x2F;模式0：同步移位串行模式
+	UART_8bit_BRTx  &#x3D; 0x01,	 &#x2F;&#x2F;模式1：8位波特率可变模式
+	UART_9bit_Fixed &#x3D; 0x02,  &#x2F;&#x2F;模式2：9位波特率固定模式
+	UART_9bit_BRTx  &#x3D; 0x03   &#x2F;&#x2F;模式3：9位波特率可变模式
+&#125;	UARTMode_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
+<h5 id="UARTBRTGen-Type-枚举体说明"><a href="#UARTBRTGen-Type-枚举体说明" class="headerlink" title="UARTBRTGen_Type 枚举体说明"></a>UARTBRTGen_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+	UART_BRT_TIM1 &#x3D; 0x00,   &#x2F;&#x2F;定时器1做波特率发生器
+	UART_BRT_TIM2 &#x3D; 0x01,   &#x2F;&#x2F;定时器2做波特率发生器
+	UART_BRT_TIM3 &#x3D; 0x02,	&#x2F;&#x2F;定时器3做波特率发生器
+	UART_BRT_TIM4 &#x3D; 0x03 	&#x2F;&#x2F;定时器4做波特率发生器
+&#125;	UARTBRTGen_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
+<h5 id="UARTBRTMode-Type-枚举体说明"><a href="#UARTBRTMode-Type-枚举体说明" class="headerlink" title="UARTBRTMode_Type 枚举体说明"></a>UARTBRTMode_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+    UART_BRT_1T  &#x3D; 0x00,   &#x2F;&#x2F; 波特率发生器1T模式 
+    UART_BRT_12T &#x3D; 0x01    &#x2F;&#x2F; 波特率发生器12T模式
+&#125;	UARTBRTMode_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+
+<h4 id="2-串口中断初始化函数"><a href="#2-串口中断初始化函数" class="headerlink" title="2. 串口中断初始化函数"></a>2. 串口中断初始化函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">FSCSTATE  <strong>NVIC_UART1_Init</strong>(NVICPri_Type Priority,FUNSTATE Run)</td>
+<td align="center">串口1中断初始化</td>
+</tr>
+<tr>
+<td align="center">FSCSTATE  <strong>NVIC_UART2_Init</strong>(NVICPri_Type Priority,FUNSTATE Run)</td>
+<td align="center">串口2中断初始化</td>
+</tr>
+<tr>
+<td align="center">FSCSTATE  <strong>NVIC_UART3_Init</strong>(FUNSTATE Run)</td>
+<td align="center">串口3中断初始化</td>
+</tr>
+<tr>
+<td align="center">FSCSTATE  <strong>NVIC_UART4_Init</strong>(FUNSTATE Run)</td>
+<td align="center">串口4中断初始化</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：NVICPri_Type 枚举体的具体描述，详情见《中断管理》章节。</p>
+</blockquote>
+<br>
+
+<h4 id="3-串口中断服务函数"><a href="#3-串口中断服务函数" class="headerlink" title="3. 串口中断服务函数"></a>3. 串口中断服务函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void <strong>UART1_ISRQ_Handler</strong>(void)</td>
+<td align="center">串口1中断服务</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART2_ISRQ_Handler</strong>(void)</td>
+<td align="center">串口2中断服务</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART3_ISRQ_Handler</strong>(void)</td>
+<td align="center">串口3中断服务</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART4_ISRQ_Handler</strong>(void)</td>
+<td align="center">串口4中断服务</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="4-串口中断控制函数"><a href="#4-串口中断控制函数" class="headerlink" title="4. 串口中断控制函数"></a>4. 串口中断控制函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>NVIC_UART1_CTRL</strong>(run)</td>
+<td align="center">串口1中断开关控制（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>NVIC_UART2_CTRL</strong>(run)</td>
+<td align="center">串口2中断开关控制（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>NVIC_UART3_CTRL</strong>(run)</td>
+<td align="center">串口3中断开关控制（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>NVIC_UART4_CTRL</strong>(run)</td>
+<td align="center">串口4中断开关控制（宏函数）</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="5-串口端口切换函数"><a href="#5-串口端口切换函数" class="headerlink" title="5. 串口端口切换函数"></a>5. 串口端口切换函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">FSCSTATE <strong>GPIO_UART1_SWPort</strong>(GPIOSWPort_Type Port)</td>
+<td align="center">串口1端口切换</td>
+</tr>
+<tr>
+<td align="center">FSCSTATE <strong>GPIO_UART2_SWPort</strong>(GPIOSWPort_Type Port)</td>
+<td align="center">串口2端口切换</td>
+</tr>
+<tr>
+<td align="center">FSCSTATE <strong>GPIO_UART3_SWPort</strong>(GPIOSWPort_Type Port))</td>
+<td align="center">串口3端口切换</td>
+</tr>
+<tr>
+<td align="center">FSCSTATE <strong>GPIO_UART4_SWPort</strong>(GPIOSWPort_Type Port)</td>
+<td align="center">串口4端口切换</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="6-串口获取接收标志函数"><a href="#6-串口获取接收标志函数" class="headerlink" title="6. 串口获取接收标志函数"></a>6. 串口获取接收标志函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>UART1_GET_RX_FLAG</strong>()</td>
+<td align="center">串口1获取接收标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART2_GET_RX_FLAG</strong>()</td>
+<td align="center">串口2获取接收标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART3_GET_RX_FLAG</strong>()</td>
+<td align="center">串口3获取接收标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART4_GET_RX_FLAG</strong>()</td>
+<td align="center">串口4获取接收标志（宏函数）</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="7-串口获取输出标志函数"><a href="#7-串口获取输出标志函数" class="headerlink" title="7. 串口获取输出标志函数"></a>7. 串口获取输出标志函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>UART1_GET_TX_FLAG</strong>()</td>
+<td align="center">串口1获取输出标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART2_GET_TX_FLAG</strong>()</td>
+<td align="center">串口2获取输出标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART3_GET_TX_FLAG</strong>()</td>
+<td align="center">串口3获取输出标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART4_GET_TX_FLAG</strong>()</td>
+<td align="center">串口4获取输出标志（宏函数）</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="8-串口清理接收标志函数"><a href="#8-串口清理接收标志函数" class="headerlink" title="8. 串口清理接收标志函数"></a>8. 串口清理接收标志函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>UART1_CLEAR_RX_FLAG</strong>()</td>
+<td align="center">串口1清理接收标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART2_CLEAR_RX_FLAG</strong>()</td>
+<td align="center">串口2清理接收标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART3_CLEAR_RX_FLAG</strong>()</td>
+<td align="center">串口3清理接收标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART4_CLEAR_RX_FLAG</strong>()</td>
+<td align="center">串口4清理接收标志（宏函数）</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="9-串口清理输出标志函数"><a href="#9-串口清理输出标志函数" class="headerlink" title="9. 串口清理输出标志函数"></a>9. 串口清理输出标志函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>UART1_CLEAR_TX_FLAG</strong>()</td>
+<td align="center">串口1清理输出标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART2_CLEAR_TX_FLAG</strong>()</td>
+<td align="center">串口2清理输出标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART3_CLEAR_TX_FLAG</strong>()</td>
+<td align="center">串口3清理输出标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART4_CLEAR_TX_FLAG</strong>()</td>
+<td align="center">串口4清理输出标志（宏函数）</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="10-串口获取忙标志函数"><a href="#10-串口获取忙标志函数" class="headerlink" title="10. 串口获取忙标志函数"></a>10. 串口获取忙标志函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>UART1_GET_BUSY_FLAG</strong>()</td>
+<td align="center">串口1获取忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART2_GET_BUSY_FLAG</strong>()</td>
+<td align="center">串口2获取忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART3_GET_BUSY_FLAG</strong>()</td>
+<td align="center">串口3获取忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART4_GET_BUSY_FLAG</strong>()</td>
+<td align="center">串口4获取忙标志（宏函数）</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="11-串口设置忙标志函数"><a href="#11-串口设置忙标志函数" class="headerlink" title="11. 串口设置忙标志函数"></a>11. 串口设置忙标志函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>UART1_SET_BUSY_FLAG</strong>()</td>
+<td align="center">串口1设置忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART2_SET_BUSY_FLAG</strong>()</td>
+<td align="center">串口2设置忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART3_SET_BUSY_FLAG</strong>()</td>
+<td align="center">串口3设置忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART4_SET_BUSY_FLAG</strong>()</td>
+<td align="center">串口4设置忙标志（宏函数）</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="12-串口清理忙标志函数"><a href="#12-串口清理忙标志函数" class="headerlink" title="12. 串口清理忙标志函数"></a>12. 串口清理忙标志函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>UART1_CLEAR_BUSY_FLAG</strong>()</td>
+<td align="center">串口1清理忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART2_CLEAR_BUSY_FLAG</strong>()</td>
+<td align="center">串口2清理忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART3_CLEAR_BUSY_FLAG</strong>()</td>
+<td align="center">串口3清理忙标志（宏函数）</td>
+</tr>
+<tr>
+<td align="center"><strong>UART4_CLEAR_BUSY_FLAG</strong>()</td>
+<td align="center">串口4清理忙标志（宏函数）</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="13-串口发送一个字节函数"><a href="#13-串口发送一个字节函数" class="headerlink" title="13.串口发送一个字节函数"></a>13.串口发送一个字节函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void <strong>UART1_Send_Byte</strong>(uint8_t  dat)</td>
+<td align="center">串口1发送一个字节</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART2_Send_Byte</strong>(uint8_t  dat)</td>
+<td align="center">串口2发送一个字节</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART3_Send_Byte</strong>(uint8_t  dat)</td>
+<td align="center">串口3发送一个字节</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART4_Send_Byte</strong>(uint8_t  dat)</td>
+<td align="center">串口4发送一个字节</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="14-串口接收一个字节函数"><a href="#14-串口接收一个字节函数" class="headerlink" title="14. 串口接收一个字节函数"></a>14. 串口接收一个字节函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void <strong>UART1_Rev_Byte</strong>(uint8_t * dat)</td>
+<td align="center">串口1接收一个字节</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART2_Rev_Byte</strong>(uint8_t * dat)</td>
+<td align="center">串口2接收一个字节</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART3_Rev_Byte</strong>(uint8_t * dat)</td>
+<td align="center">串口3接收一个字节</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART4_Rev_Byte</strong>(uint8_t * dat)</td>
+<td align="center">串口4接收一个字节</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="15-串口发送一个字符串函数"><a href="#15-串口发送一个字符串函数" class="headerlink" title="15. 串口发送一个字符串函数"></a>15. 串口发送一个字符串函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void <strong>UART1_Send_String</strong>(const uint8_t  *str)</td>
+<td align="center">串口1发送一个字符串</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART2_Send_String</strong>(const uint8_t  *str)</td>
+<td align="center">串口2发送一个字符串</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART3_Send_String</strong>(const uint8_t  *str)</td>
+<td align="center">串口3发送一个字符串</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART4_Send_String</strong>(const uint8_t  *str)</td>
+<td align="center">串口4发送一个字符串</td>
+</tr>
+</tbody></table>
+<br>
+
+<h4 id="16-串口发送一个数组函数"><a href="#16-串口发送一个数组函数" class="headerlink" title="16.串口发送一个数组函数"></a>16.串口发送一个数组函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void <strong>UART1_Send_Array</strong>(const uint8_t  *str,uint16_t  len)</td>
+<td align="center">串口1发送一个数组</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART2_Send_Array</strong>(const uint8_t  *str,uint16_t  len)</td>
+<td align="center">串口2发送一个数组</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART3_Send_Array</strong>(const uint8_t  *str,uint16_t  len)</td>
+<td align="center">串口3发送一个数组</td>
+</tr>
+<tr>
+<td align="center">void <strong>UART4_Send_Array</strong>(const uint8_t  *str,uint16_t  len)</td>
+<td align="center">串口4发送一个数组</td>
+</tr>
+</tbody></table>
+<br>
+
+
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><h4 id="1-定时器演示"><a href="#1-定时器演示" class="headerlink" title="1. 定时器演示"></a>1. 定时器演示</h4><h4 id="1-串口初始化演示"><a href="#1-串口初始化演示" class="headerlink" title="1. 串口初始化演示"></a>1. 串口初始化演示</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">void STC8x_UART_Config(void)
+&#123;
+	UART_InitType UART_InitStruct&#x3D;&#123;0&#125;;	&#x2F;&#x2F; 定义串口初始化结构体
+
+	&#x2F;* UART1 TXD *&#x2F;
+	GPIO_MODE_OUT_PP(GPIO_P3,Pin_1); &#x2F;&#x2F;P31口设置为推挽输出
+	&#x2F;* UART1 RXD *&#x2F;
+	GPIO_MODEIN_FLOATING(GPIO_P3,Pin_0); &#x2F;&#x2F;P30口设置为浮空输入
+    
+	UART_InitStruct.Mode &#x3D; UART_8bit_BRTx;  &#x2F;&#x2F; 工作模式： 8位波特率可变模式
+	UART_InitStruct.BRTGen &#x3D; UART_BRT_TIM1; &#x2F;&#x2F; 波特率发生器：定时器1
+	UART_InitStruct.BRTMode &#x3D; UART_BRT_1T;  &#x2F;&#x2F; 波特率发生器模式：1T模式
+	UART_InitStruct.BaudRate &#x3D; 115200;  &#x2F;&#x2F; 波特率值：115200
+	UART_InitStruct.RxEnable &#x3D; ENABLE;  &#x2F;&#x2F; 接收使能控制位：开启接收
+	UART1_Init(&amp;UART_InitStruct);   &#x2F;&#x2F;串口1初始化函数，传入结构体地址
+	NVIC_UART1_Init(NVIC_PR0,ENABLE); &#x2F;&#x2F;串口1中断初始化函数，0优先级，开启中断。
+    
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-串口输出类函数演示"><a href="#2-串口输出类函数演示" class="headerlink" title="2. 串口输出类函数演示"></a>2. 串口输出类函数演示</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">uint8_t Test1 &#x3D; 0x01;  &#x2F;&#x2F; 定义一个无符号8位的变量
+uint8_t Test2[10] &#x3D; &#123;0,1,2,3,4,5,6,7,8,9&#125;; &#x2F;&#x2F; 定义一个无符号8位的数组，元素有十个
+uint8_t Test3[] &#x3D; &quot;Hello,World!&quot;; &#x2F;&#x2F; 定义一个无符号8位的数组&#x2F;字符串
+
+UART1_Send_Byte(Test1);  &#x2F;&#x2F; 串口1输出变量Test1
+UART1_Send_Array(Test2,10);  &#x2F;&#x2F; 串口1输出数组Test2
+UART1_Send_String(Test3);  &#x2F;&#x2F; 串口1输出字符串Test3
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-串口接收类函数演示"><a href="#3-串口接收类函数演示" class="headerlink" title="3. 串口接收类函数演示"></a>3. 串口接收类函数演示</h4><p><strong>中断法(建议使用)</strong></p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">uint8_t Re dat &#x3D; 0; &#x2F;&#x2F; 定义一个无符号8位的变量
+
+void UART1_ISRQ_Handler(void) &#x2F;&#x2F; 串口1中断服务函数
+&#123;
+  UART1_CLEAR_BUSY_FLAG();  &#x2F;&#x2F; 串口1清理忙标志
+  if (UART1_GET_TX_FLAG())  &#x2F;&#x2F; 判断串口1输出标志位
+  &#123;
+    UART1_CLEAR_TX_FLAG();  &#x2F;&#x2F; 串口1清理输出标志位
+  &#125;
+  if (UART1_GET_RX_FLAG())  &#x2F;&#x2F; 判断串口1接收标志位
+  &#123;
+    UART1_CLEAR_RX_FLAG();  &#x2F;&#x2F; 串口1清理接收标志位
+    UART1_Rcv_Byte(&amp;Re dat); &#x2F;&#x2F; 读取接收的字节，并存入变量Re dat中
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>查询法(不建议使用)</strong></p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;8051_ELL_Lib.h&quot;
+
+uint8_t Redat &#x3D; 0; &#x2F;&#x2F; 定义一个无符号8位的变量
 
 int main(void)  &#x2F;&#x2F;main 函数
 &#123;
-	STC8x_System_Init(); &#x2F;&#x2F; 调用MCU外设初始化函数  主要初始化定时器，这里给定时器1ms中断一次 
-    TMT_Init();  &#x2F;&#x2F;任务进程初始化函数。
-
-	if(TMT.Create(Task1_Led,500) &#x3D;&#x3D; FSC_SUCCESS)
-	&#123;
-		DEBUG_LOG(&quot;success&quot;);
-	&#125;
-	else
-	&#123;
-		DEBUG_LOG(&quot;fail&quot;);		
-	&#125;
-
+	STC8Ax_PER_Init(); &#x2F;&#x2F; 调用MCU外设初始化函数
+	
 	for(;;)  &#x2F;&#x2F;无限循环体
 	&#123;
-		TMT.Run();&#x2F;&#x2F; 调用任务进程处理回调函数 
+		UART1_CLEAR_BUSY_FLAG();  &#x2F;&#x2F; 串口1清理忙标志
+        while(!UART1_GET_RX_FLAG());
+        UART1_CLEAR_RX_FLAG();  &#x2F;&#x2F; 串口1清理接收标志位
+   		UART1_Rcv_Byte(&amp;Redat); &#x2F;&#x2F; 读取接收的字节，并存入变量Redat中
 	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -517,7 +938,7 @@ int main(void)  &#x2F;&#x2F;main 函数
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zeweni.gitee.io/2021/03/01/8051ell-ku-zu-jian-pian-ren-wu-guan-li-gong-ju/">http://zeweni.gitee.io/2021/03/01/8051ell-ku-zu-jian-pian-ren-wu-guan-li-gong-ju/</a>
+                    <a href="http://zeweni.gitee.io/2021/03/04/8051ell-ku-pian-nei-wai-she-pian-chuan-kou/">http://zeweni.gitee.io/2021/03/04/8051ell-ku-pian-nei-wai-she-pian-chuan-kou/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -998,23 +1419,23 @@ int main(void)  &#x2F;&#x2F;main 函数
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/01/8051ell-ku-pian-nei-wai-she-pian-ke-bian-cheng-ji-shu-qi/">
+                <a href="/2021/03/14/8051ell-ku-pian-nei-wai-she-pian-zeng-qiang-xing-pwm/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-可编程计数器">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-增强型PWM">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-可编程计数器</span>
+                        <span class="card-title">8051ELL库-片内外设篇-增强型PWM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的可编程计数器（PCA）
+                            本文主要讲解 8051 ELL函数库的15位增强型PWM
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-14
                         </span>
                         <span class="publish-author">
                             
@@ -1046,23 +1467,23 @@ int main(void)  &#x2F;&#x2F;main 函数
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/01/8051ell-ku-she-bei-qu-dong-pian-an-jian-sao-miao-dan-jian/">
+                <a href="/2021/03/02/8051ell-ku-pian-nei-wai-she-pian-ding-shi-qi/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-组件篇-任务管理工具">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-定时器">
                         
-                        <span class="card-title">8051ELL库-组件篇-任务管理工具</span>
+                        <span class="card-title">8051ELL库-片内外设篇-定时器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的按键扫描（单键）
+                            本文主要讲解 8051 ELL函数库的定时器
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
                             </span>
                         <span class="publish-author">
                             
