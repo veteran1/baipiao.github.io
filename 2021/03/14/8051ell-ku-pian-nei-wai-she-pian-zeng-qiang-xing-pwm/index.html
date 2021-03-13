@@ -680,17 +680,17 @@ void STC8Ax_PWM_Config(void)
 	GPIO_PWM5_SWPort(SW_Port1);
 
     &#x2F;*
-     * PWM frequency:
-     * If system clock frequency &#x3D;&#x3D; 24Mhz,
-     * to configure PWM_SCLK_DIV &#x3D; 1,
-     * to configure frequency of counts &#x3D; 0x1000( 4096 )
-     * so, PWM frequency &#x3D; 24M &#x2F; (1*4096) Hz &#x3D; 5.86KHz
+     * PWM 周期:
+     * 如果系统时钟频率 &#x3D;&#x3D; 24Mhz,
+     * 设置 PWM_SCLK_DIV &#x3D; 1,
+     * 设置PWM计数器预置值 &#x3D; 0x1000( 4096 )
+     * 所以PWM周期 &#x3D; 24M &#x2F; (1*4096) Hz &#x3D; 5.86KHz
      * 
-     * duty:
-     * to configure PWM level of start &#x3D; High level,
-     * to configure first point &#x3D; 0x100,
-     * to configure second point &#x3D; 0x500,
-     * so, duty &#x3D; (0x1000-(0x500-0x100))&#x2F;0x1000 &#x3D; 75%
+     * 占空比:
+     * 设置初始电平 &#x3D; High level,
+     * 设置第一个翻转点 &#x3D; 0x100,
+     * 设置第二个翻转点 &#x3D; 0x500,
+     * 所以占空比 &#x3D; (0x1000-(0x500-0x100))&#x2F;0x1000 &#x3D; 75%
      *&#x2F;
 
 	PWM5_Init(PWM_Start_High_Level,0x0100,0x0500,ENABLE);
