@@ -614,7 +614,7 @@
     TIMER_InitStruct<span class="token punctuation">.</span>TCycle <span class="token operator">=</span> TIMER_TCY_1T<span class="token punctuation">;</span>  <span class="token comment">// 指令周期：1T模式</span>
     TIMER_InitStruct<span class="token punctuation">.</span>ClkOut <span class="token operator">=</span> DISABLE<span class="token punctuation">;</span>  <span class="token comment">// 可编程时钟输出：不输出</span>
     TIMER_InitStruct<span class="token punctuation">.</span>Value <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>  <span class="token comment">// 预装载值：1000us</span>
-    TIMER_InitStruct<span class="token punctuation">.</span>run <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>  <span class="token comment">// 运行控制位：运行</span>
+    TIMER_InitStruct<span class="token punctuation">.</span>Run <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>  <span class="token comment">// 运行控制位：运行</span>
     <span class="token function">TIMER0_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>TIMER_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 定时器0初始化函数，传入结构体地址              </span>
     <span class="token function">NVIC_TIMER0_Init</span><span class="token punctuation">(</span>NVIC_PR0<span class="token punctuation">,</span>ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 定时器0中断初始化函数，优先级为0，开启中断   </span>
 <span class="token punctuation">&#125;</span>
