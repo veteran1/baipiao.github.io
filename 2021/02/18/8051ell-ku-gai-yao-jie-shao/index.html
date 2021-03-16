@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="8051ELL库-片内外设篇-时钟管理, 泽文i 的博客">
+    <meta name="keywords" content="8051ELL库-概要介绍, 泽文i 的博客">
     <meta name="description" content="专注 真诚">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>8051ELL库-片内外设篇-时钟管理 | 泽文i 的博客</title>
+    <title>8051ELL库-概要介绍 | 泽文i 的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -208,7 +208,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">8051ELL库-片内外设篇-时钟管理</h1>
+                    <h1 class="description center-align post-title">8051ELL库-概要介绍</h1>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-02
+                    2021-02-18
                 </div>
                 
 
@@ -379,158 +379,55 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="STC8系列"><a href="#STC8系列" class="headerlink" title="STC8系列"></a>STC8系列</h2><h3 id="外设介绍"><a href="#外设介绍" class="headerlink" title="外设介绍"></a>外设介绍</h3><p>STC8系列MCU的系统时钟控制器，有三个时钟源可以选择，分别是：内部高精度24MHz的IRC、内部32KHz的IRC（误差较大）、外部晶振振荡器或者外部时钟信号。</p>
-<p>STC8A的系统时钟是由主时钟分频而来，同时系统时钟还可以再分频到IO口输出脉冲供其他芯片使用。主时钟源有三个，可以通过配置寄存器来选择。</p>
-<img src=" ../../../../images/8051_ell_lib/doc/system-clock-framework.png" style="zoom:75%;" />
+                <h2 id="8051-ELL函数库简介"><a href="#8051-ELL函数库简介" class="headerlink" title="8051 ELL函数库简介"></a>8051 ELL函数库简介</h2><br>
 
-<p>要注意的是，切换内部主时钟源的时候，从IRC振荡电路停振到使能，要经过一段时间振荡器的频率才会稳定。所以要等到时钟源稳定以后再切换。STC8A、STC8C、STC8F系列时钟管理方法一致，STC8G、STC8H系列时钟管理方法一致。</p>
+<p>ELL是<code>efficient low-layer</code>的缩写，意思是<code>高效低封装</code>，结合了<code>HAL库</code>和<code>LL库</code>的编程思想，既保证了通用性又降低了flash的过度占用。可谓是一举两得，高效、简洁、好用！<br><br></p>
+<p>开发函数库，最初是为了满足我自己的生产需求，后来经过深思熟虑，我想做一个好用的通用库，所以把它开源出来，分享给广大工程师们。<br><br></p>
+<p>函数库是基于Keil开发，支持Keil4和Keil5，支持Vscode协同开发，推荐使用EIDE插件。目前函数库主要适配了STC公司的单片机型号，以STC8系列为主。后续计划增加STC12、STC15、STC16系列。<br><br></p>
+<h2 id="新手如何入门"><a href="#新手如何入门" class="headerlink" title="新手如何入门"></a>新手如何入门</h2><br>
+
+<p>如果你明白了ELL函数库的架构，那么对你学习本库会有非常大的帮助！函数库采用了一个裸机框架来组织库文件。框架包括两大部分：<code>工程文件</code>和<code>库文件</code>。<br><br></p>
+<p>工程文件主要存放<code>Keil工程</code>、<code>Vscode文件</code>、<code>用户代码</code>。这里可以根据你的编程习惯进行安排，非常的自由！库文件才是我们的重头戏，它主要分为四个部分：<code>核心文件夹</code>、<code>片内外设库</code>、<code>组件库</code>、<code>设备驱动库</code>。<br><br></p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">核心文件夹：
+存放各种MCU的寄存器头文件、函数库重定义数据类型头文件、函数库常用数据结构头文件
+
+片内外设库：
+存放MCU的片内外设模块，是库的主要构成单元。
+
+组件库：
+配套8051内核开发的好用组件，具有一定的抽象性和封装性，能加速项目的开发，比如TMT时间片任务进程组件。
+
+设备驱动库：
+一些常用的外围芯片、模块，通过统一的驱动框架进行封装，方便开发。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <br>
 
-<h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="系统时钟初始化函数"><a href="#系统时钟初始化函数" class="headerlink" title="系统时钟初始化函数"></a>系统时钟初始化函数</h4><table>
-<thead>
-<tr>
-<th align="center">函数名</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">FSCSTATE <strong>SYSCLK_Init</strong>(const SYSCLK_InitType *sysClkn)</td>
-<td align="center">系统时钟初始化</td>
-</tr>
-<tr>
-<td align="center">uint32 Get_SysClk_FRE(void)</td>
-<td align="center">获取系统时钟频率</td>
-</tr>
-</tbody></table>
+<p>下面是ELL函数库的框架图:<br><br></p>
+<img src=" ../../../../images/8051_ell_lib/doc/ELL-framework.png" style="zoom:75%;" />
 <br>
 
-
-<h5 id="SYSCLK-InitType-结构体说明"><a href="#SYSCLK-InitType-结构体说明" class="headerlink" title="SYSCLK_InitType  结构体说明"></a>SYSCLK_InitType  结构体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct
-&#123;
-    MCLKSrc_Type MCLKSrc;  &#x2F;* 主时钟源 *&#x2F;
-		
-    uint8_t IRCTRIM;    &#x2F;* 内部IRC 频率调节器  *&#x2F;
-	
-    LIRCTRIM_Type LIRCTRIM;  &#x2F;* 内部IRC 频率微调器  *&#x2F;
-	
-    uint8_t MCLKDiv;  &#x2F;* 主时钟分频 range: 0 &lt;&#x3D; MDiv &lt;&#x3D; 255 *&#x2F;
-	
-    uint8_t SCLKDiv;  &#x2F;* 系统时钟分频 *&#x2F;
-	
-    SCLKOut_Type SCLKOutPin; &#x2F;* 选择系统时钟输出IO口 *&#x2F;
-  
-    XOSCFilter_Type XOSCFilter; &#x2F;* 只有STC8H系列才有 *&#x2F;
-
-    IRCBand_Type  IRCBand; &#x2F;* 只有STC8G、STC8H系列才有 *&#x2F;
-
-&#125;   SYSCLK_InitType;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<br>
-
-<h5 id="MCLKSrc-Type-枚举体说明"><a href="#MCLKSrc-Type-枚举体说明" class="headerlink" title="MCLKSrc_Type 枚举体说明"></a>MCLKSrc_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
-&#123;
-    AUTO &#x3D; 0x00,
-    HIRC &#x3D; 0x01, &#x2F;* 高精度内部 4MHz~36MHz IRC时钟源 *&#x2F;
-    LIRC &#x3D; 0x02, &#x2F;* 低精度内部 32KHz IRC时钟源 *&#x2F;
-    XOSC &#x3D; 0x03,  &#x2F;* 外部时钟源 *&#x2F;
-    X32KSC &#x3D; 0x04  &#x2F;* 外部32K时钟晶振控制，只有STC8H系列才有 *&#x2F;
-&#125;   MCLKSrc_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<br>
-
-<h5 id="MCLKSrc-Type-枚举体说明-1"><a href="#MCLKSrc-Type-枚举体说明-1" class="headerlink" title="MCLKSrc_Type 枚举体说明"></a>MCLKSrc_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
-&#123;
-    TRIM0 &#x3D; 0x00, &#x2F;* 不调整 *&#x2F;
-    TRIM1 &#x3D; 0x01, &#x2F;* 调整约0.10%  *&#x2F;
-    TRIM2 &#x3D; 0x02, &#x2F;* 调整约0.04%  *&#x2F;
-    TRIM3 &#x3D; 0x03  &#x2F;* 调整约0.10%  *&#x2F;
-&#125;   LIRCTRIM_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<br>
-
-<h5 id="SCLKOut-Type-枚举体说明"><a href="#SCLKOut-Type-枚举体说明" class="headerlink" title="SCLKOut_Type 枚举体说明"></a>SCLKOut_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
-&#123;
-    SCLK_OUT_P54 &#x3D; 0, &#x2F;* 输出到P54 *&#x2F;
-    SCLK_OUT_P16      &#x2F;* 输出到P16 *&#x2F;
-&#125;   SCLKOut_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<br>
-
-<h5 id="XOSCFilter-Type-枚举体说明"><a href="#XOSCFilter-Type-枚举体说明" class="headerlink" title="XOSCFilter_Type 枚举体说明"></a>XOSCFilter_Type 枚举体说明</h5><blockquote>
-<p>只有STC8H系列才有</p>
+<p>关键的是，我们该如何在工程里面使用函数库呢？我们提供了一个非常便捷的方法！我们拿STC8系列的ELL函数库举例，你只需要调用一个头文件<code>8051_ELL_Lib.h</code>，和配置一个头文件<code>Lib_CFG.h</code>。<br><br></p>
+<p>通过配置<code>Lib_CFG.h</code>，可以实现对库裁剪和控制，定制适合你工程的函数库。而使用函数库内的API，只需要调用<code>8051_ELL_Lib.h</code>就可以了。</p>
+<p>看到这里，如果你对本库产生了兴趣，可以通过下面下载:<br><br></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/zeweni/ELL-8051-LIB">gitee仓库  (需要注册账户下载，速度快)</a></p>
 </blockquote>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
-&#123;
-    XOSC_Filter_150MHz &#x3D; 0x00,  &#x2F;* 过滤150Mhz *&#x2F;
-    XOSC_Filter_125MHz &#x3D; 0x01,  &#x2F;* 过滤125Mhz *&#x2F;
-    XOSC_Filter_66MHz  &#x3D; 0x02,  &#x2F;* 过滤66Mhz  *&#x2F;
-    XOSC_Filter_Null   &#x3D; 0x03   &#x2F;* 过滤无效 *&#x2F;
-&#125;   XOSCFilter_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <br>
 
-<h5 id="IRCBand-Type-枚举体说明"><a href="#IRCBand-Type-枚举体说明" class="headerlink" title="IRCBand_Type 枚举体说明"></a>IRCBand_Type 枚举体说明</h5><blockquote>
-<p>只有STC8G、STC8H系列才有</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/zewen-i/8051-ELL-LIB">github仓库   (可以直接下载，但速度慢)</a></p>
 </blockquote>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
-&#123;
-    IRC_Band_20MHz &#x3D; 0x00,
-    IRC_Band_33MHz &#x3D; 0x01, &#x2F;* 只有STC8G系列才有 *&#x2F;
-    IRC_Band_35MHz &#x3D; 0x01  &#x2F;* 只有STC8H系列才有 *&#x2F;
-&#125;   IRCBand_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <br>
 
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><h4 id="1-系统时钟初始化"><a href="#1-系统时钟初始化" class="headerlink" title="1.系统时钟初始化"></a>1.系统时钟初始化</h4><p>我们提供两种办法来配置系统时钟频率，一种是通过stc-isp助手直接设置，一种是程序手动设置，都非常简单。</p>
-<p>如果是使用内部IRC时钟，就先选择对应的IRC频率：</p>
-<img src=" ../../../../images/8051_ell_lib/doc/system-clock-manage1.jpg" style="zoom:75%;" />
+<p>本库是开源项目，遵循 Apache 许可证 2.0 版本，可免费在商业产品中使用，不需要公布应用程序源码，没有潜在商业风险。<br><br></p>
+<p>如果本项目对你有所帮助，可以通过下方的<code>赞赏</code>按钮，请我喝一杯咖啡！<br><br></p>
+<blockquote>
+<p>QQ技术交流群：1001220381</p>
+</blockquote>
+<br>
 
-<p>再勾选下载重要参数：</p>
-<img src=" ../../../../images/8051_ell_lib/doc/system-clock-manage2.jpg" style="zoom:75%;" />
-
-<p>同时在函数里配置：</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">void STC8x_SYSCLK_Config(void)
-&#123;
-	SYSCLK_InitType SYSCLK_InitStruct&#x3D;&#123;0&#125;; &#x2F;* 定义系统时钟初始化结构体 *&#x2F;
-    
-    SYSCLK_InitStruct.MCLKSrc &#x3D; AUTO;  &#x2F;* 这里选择自动，通过助手配置IRC频率 *&#x2F;
-	SYSCLK_InitStruct.SCLKDiv &#x3D; 0; &#x2F;* 系统时钟0分频，此时不对外输出脉冲信号 *&#x2F;
-	SYSCLK_InitStruct.SCLKOutPin &#x3D; SCLK_OUT_P54; &#x2F;* 如果SCLKDiv&#x3D;&#x3D;0，此选项无效 *&#x2F;
-	SYSCLK_Init(&amp;SYSCLK_InitStruct); &#x2F;* 传入结构体地址，完成系统时钟初始化 *&#x2F;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果是手动设置，就需要这样来配置：</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">void STC8x_SYSCLK_Config(void)
-&#123;
-	SYSCLK_InitType SYSCLK_InitStruct&#x3D;&#123;0&#125;; &#x2F;* 定义系统时钟初始化结构体 *&#x2F;
-    
-    &#x2F;&#x2F;使用程序设置：系统频率为：24M （24M &#x2F; 1HZ）
-	SYSCLK_InitStruct.MCLKSrc &#x3D; HIRC;  &#x2F;* 主时钟源选择 内部高精度时钟*&#x2F;
-    &#x2F;&#x2F; SYSCLK_InitStruct.IRCBand &#x3D; IRC_Band_20MHz; &#x2F;* STC8G、STC8H系列还要选择频段 *&#x2F;
-    SYSCLK_InitStruct.IRCTRIM &#x3D; 160;   &#x2F;*主时钟频率调整到 24M左右 *&#x2F;
-	SYSCLK_InitStruct.LIRCTRIM &#x3D; 1;  &#x2F;* 主时钟微调 0.01% *&#x2F;
-	SYSCLK_InitStruct.MCLKDiv &#x3D; 1;   &#x2F;* 主时钟1分频 *&#x2F;
-	SYSCLK_InitStruct.SCLKDiv &#x3D; 0; &#x2F;* 系统时钟0分频，此时不对外输出脉冲信号 *&#x2F;
-	SYSCLK_InitStruct.SCLKOutPin &#x3D; SCLK_OUT_P54; &#x2F;* 如果SCLKDiv&#x3D;&#x3D;0，此选项无效 *&#x2F;
-	SYSCLK_Init(&amp;SYSCLK_InitStruct); &#x2F;* 传入结构体地址，完成系统时钟初始化 *&#x2F;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其中<code>SYSCLK_InitStruct.IRCTRIM</code>计算主时钟频率的方法参考如下：</p>
-<img src=" ../../../../images/8051_ell_lib/doc/system-clock-manage3.jpg" style="zoom:75%;" />
-
-<h4 id="2-调用函数"><a href="#2-调用函数" class="headerlink" title="2.调用函数"></a>2.调用函数</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;8051_ELL_Lib.h&quot;
-uint32_t SYSCLK_FRE;
-
-int main(void)
-&#123;
-    STC8x_SYSCLK_Config(); &#x2F;&#x2F;初始化系统时钟
-    STC8x_UART_Config(); &#x2F;&#x2F;初始化串口
-    
-    SYSCLK_FRE &#x3D; Get_Sysclk_FRE();  &#x2F;&#x2F;获取系统时钟频率
-    
-    &#x2F;&#x2F;通过串口助手打印出来观察
-	UART1_Send_Byte(SYSCLK_FRE&gt;&gt;24);
-	UART1_Send_Byte(SYSCLK_FRE&gt;&gt;16);
-	UART1_Send_Byte(SYSCLK_FRE&gt;&gt;8);
-	UART1_Send_Byte(SYSCLK_FRE&gt;&gt;0);
-
-    for(;;)
-    &#123;
-        
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我会在群里免费答疑和提供技术支持！</p>
+<br>
 
                 
             </div>
@@ -557,7 +454,7 @@ int main(void)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zeweni.gitee.io/2021/03/02/8051ell-ku-pian-nei-wai-she-pian-shi-zhong-guan-li/">http://zeweni.gitee.io/2021/03/02/8051ell-ku-pian-nei-wai-she-pian-shi-zhong-guan-li/</a>
+                    <a href="http://zeweni.gitee.io/2021/02/18/8051ell-ku-gai-yao-jie-shao/">http://zeweni.gitee.io/2021/02/18/8051ell-ku-gai-yao-jie-shao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1038,23 +935,23 @@ int main(void)
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/02/8051ell-ku-pian-nei-wai-she-pian-ding-shi-qi/">
+                <a href="/2021/03/01/8051ell-ku-zu-jian-pian-ren-wu-guan-li-gong-ju/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-定时器">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-组件篇-任务管理工具">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-定时器</span>
+                        <span class="card-title">8051ELL库-组件篇-任务管理工具</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的定时器
+                            本文主要讲解 8051 ELL函数库的时间片任务进程框架
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
                         </span>
                         <span class="publish-author">
                             
@@ -1086,23 +983,23 @@ int main(void)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/02/8051ell-ku-pian-nei-wai-she-pian-io-kou/">
+                <a href="/2021/02/18/8051ell-ku-gong-cheng-chuang-jian/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-IO口">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-工程创建">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-IO口</span>
+                        <span class="card-title">8051ELL库-工程创建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的IO口
+                            本文主要介绍如何创建一个 8051 ELL函数库的工程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-18
                             </span>
                         <span class="publish-author">
                             

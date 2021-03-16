@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="8051ELL库介绍, 泽文i 的博客">
+    <meta name="keywords" content="8051ELL库-片内外设篇-看门狗, 泽文i 的博客">
     <meta name="description" content="专注 真诚">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>8051ELL库介绍 | 泽文i 的博客</title>
+    <title>8051ELL库-片内外设篇-看门狗 | 泽文i 的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -208,7 +208,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">8051ELL库介绍</h1>
+                    <h1 class="description center-align post-title">8051ELL库-片内外设篇-看门狗</h1>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-18
+                    2021-03-16
                 </div>
                 
 
@@ -379,55 +379,60 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="8051-ELL函数库简介"><a href="#8051-ELL函数库简介" class="headerlink" title="8051 ELL函数库简介"></a>8051 ELL函数库简介</h2><br>
-
-<p>ELL是<code>efficient low-layer</code>的缩写，意思是<code>高效低封装</code>，结合了<code>HAL库</code>和<code>LL库</code>的编程思想，既保证了通用性又降低了flash的过度占用。可谓是一举两得，高效、简洁、好用！<br><br></p>
-<p>开发函数库，最初是为了满足我自己的生产需求，后来经过深思熟虑，我想做一个好用的通用库，所以把它开源出来，分享给广大工程师们。<br><br></p>
-<p>函数库是基于Keil开发，支持Keil4和Keil5，支持Vscode协同开发，推荐使用EIDE插件。目前函数库主要适配了STC公司的单片机型号，以STC8系列为主。后续计划增加STC12、STC15、STC16系列。<br><br></p>
-<h2 id="新手如何入门"><a href="#新手如何入门" class="headerlink" title="新手如何入门"></a>新手如何入门</h2><br>
-
-<p>如果你明白了ELL函数库的架构，那么对你学习本库会有非常大的帮助！函数库采用了一个裸机框架来组织库文件。框架包括两大部分：<code>工程文件</code>和<code>库文件</code>。<br><br></p>
-<p>工程文件主要存放<code>Keil工程</code>、<code>Vscode文件</code>、<code>用户代码</code>。这里可以根据你的编程习惯进行安排，非常的自由！库文件才是我们的重头戏，它主要分为四个部分：<code>核心文件夹</code>、<code>片内外设库</code>、<code>组件库</code>、<code>设备驱动库</code>。<br><br></p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">核心文件夹：
-存放各种MCU的寄存器头文件、函数库重定义数据类型头文件、函数库常用数据结构头文件
-
-片内外设库：
-存放MCU的片内外设模块，是库的主要构成单元。
-
-组件库：
-配套8051内核开发的好用组件，具有一定的抽象性和封装性，能加速项目的开发，比如TMT时间片任务进程组件。
-
-设备驱动库：
-一些常用的外围芯片、模块，通过统一的驱动框架进行封装，方便开发。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id="STC8系列"><a href="#STC8系列" class="headerlink" title="STC8系列"></a>STC8系列</h2><h3 id="外设介绍"><a href="#外设介绍" class="headerlink" title="外设介绍"></a>外设介绍</h3><p>看门狗是一个非常重要的外设，在提高系统的稳定性方面有很好的作用。STC8系列引进了该功能，属于热启动中的硬件复位。</p>
+<p>在开启看门狗以后，MCU/CPU需要在规定时间内进行“喂狗”，否则系统将会强制复位，从头开始执行用户程序。</p>
+<p>STC8的看门狗启动有两种方式，分别为软件启动和硬件启动。软件启动可使用库函数，硬件启动需要使用STC-ISP助手，在下载时勾选<strong>上电复位时由硬件自动启动看门狗</strong>。</p>
+<p>看门狗溢出时间的计算，可参照STC8A技术手册系统复位章节。</p>
 <br>
 
-<p>下面是ELL函数库的框架图:<br><br></p>
-<img src=" ../../../../images/8051_ell_lib/doc/ELL-framework.png" style="zoom:75%;" />
+<h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="1-看门狗初始化函数"><a href="#1-看门狗初始化函数" class="headerlink" title="1. 看门狗初始化函数"></a>1. 看门狗初始化函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">FSCSTATE <strong>WDT_Init</strong>(uint8_t CLKDiv,FUNSTATE State)</td>
+<td align="center">看门狗初始化</td>
+</tr>
+</tbody></table>
 <br>
 
-<p>关键的是，我们该如何在工程里面使用函数库呢？我们提供了一个非常便捷的方法！我们拿STC8系列的ELL函数库举例，你只需要调用一个头文件<code>8051_ELL_Lib.h</code>，和配置一个头文件<code>Lib_CFG.h</code>。<br><br></p>
-<p>通过配置<code>Lib_CFG.h</code>，可以实现对库裁剪和控制，定制适合你工程的函数库。而使用函数库内的API，只需要调用<code>8051_ELL_Lib.h</code>就可以了。</p>
-<p>看到这里，如果你对本库产生了兴趣，可以通过下面下载:<br><br></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://gitee.com/zeweni/ELL-8051-LIB">gitee仓库  (需要注册账户下载，速度快)</a></p>
-</blockquote>
+
+<h5 id="分频系数-宏定义说明"><a href="#分频系数-宏定义说明" class="headerlink" title="分频系数 宏定义说明"></a>分频系数 宏定义说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define      WDTCLK_DIV2    0x00  &#x2F;&#x2F;2分频
+#define      WDTCLK_DIV4    0x01  &#x2F;&#x2F;4分频
+#define      WDTCLK_DIV8    0x02  &#x2F;&#x2F;8分频
+#define     WDTCLK_DIV16    0x03  &#x2F;&#x2F;16分配
+#define     WDTCLK_DIV32    0x04  &#x2F;&#x2F;32分配
+#define     WDTCLK_DIV64    0x05  &#x2F;&#x2F;64分配
+#define    WDTCLK_DIV128    0x06  &#x2F;&#x2F;128分配
+#define    WDTCLK_DIV256    0x07  &#x2F;&#x2F;256分配<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <br>
 
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/zewen-i/8051-ELL-LIB">github仓库   (可以直接下载，但速度慢)</a></p>
-</blockquote>
+
+<h4 id="2-看门狗操作函数"><a href="#2-看门狗操作函数" class="headerlink" title="2. 看门狗操作函数"></a>2. 看门狗操作函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>WDT_FEED</strong>()</td>
+<td align="center">看门狗”喂狗“（宏函数）</td>
+</tr>
+<tr>
+<td align="center">uint32 <strong>Get_WDT_Time</strong>(void)</td>
+<td align="center">获取看门狗”喂狗“时间</td>
+</tr>
+</tbody></table>
 <br>
 
-<p>本库是开源项目，遵循 Apache 许可证 2.0 版本，可免费在商业产品中使用，不需要公布应用程序源码，没有潜在商业风险。<br><br></p>
-<p>如果本项目对你有所帮助，可以通过下方的<code>赞赏</code>按钮，请我喝一杯咖啡！<br><br></p>
-<blockquote>
-<p>QQ技术交流群：1001220381</p>
-</blockquote>
-<br>
-
-<p>我会在群里免费答疑和提供技术支持！</p>
-<br>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p>```C</p>
+<p>#include “8051_ELL_Lib.h”</p>
+<p>int main(void)<br>{<br>    WDT_Init(WDTCLK_DIV16,ENABLE); /* 16分频 使能看门狗 <em>/<br>    for(;;)<br>    {<br>        WDT_FEED(); /</em> 看门狗喂狗 */<br>    }<br>}</p>
+<p>```C</p>
 
                 
             </div>
@@ -454,7 +459,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zeweni.gitee.io/2021/02/18/8051ell-ku-jie-shao/">http://zeweni.gitee.io/2021/02/18/8051ell-ku-jie-shao/</a>
+                    <a href="http://zeweni.gitee.io/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-kan-men-gou/">http://zeweni.gitee.io/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-kan-men-gou/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -935,23 +940,23 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/01/8051ell-ku-zu-jian-pian-ren-wu-guan-li-gong-ju/">
+                <a href="/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-bi-jiao-qi/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-组件篇-任务管理工具">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-比较器">
                         
-                        <span class="card-title">8051ELL库-组件篇-任务管理工具</span>
+                        <span class="card-title">8051ELL库-片内外设篇-比较器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的时间片任务进程框架
+                            本文主要讲解 8051 ELL函数库的比较器
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
                         </span>
                         <span class="publish-author">
                             
@@ -983,23 +988,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/02/18/8051ell-ku-gong-cheng-chuang-jian/">
+                <a href="/2021/03/16/8051ell-ku-dai-ma-shao-lu/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库工程创建">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-代码烧录">
                         
-                        <span class="card-title">8051ELL库工程创建</span>
+                        <span class="card-title">8051ELL库-代码烧录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要介绍如何创建一个 8051 ELL函数库的工程
+                            本文主要讲解 8051 ELL函数库如何进行编译代码和烧录
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
                             </span>
                         <span class="publish-author">
                             
