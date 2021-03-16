@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="8051ELL库-片内外设篇-12位ADC, 泽文i 的博客">
+    <meta name="keywords" content="8051ELL库-片内外设篇-SPI, 泽文i 的博客">
     <meta name="description" content="专注 真诚">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>8051ELL库-片内外设篇-12位ADC | 泽文i 的博客</title>
+    <title>8051ELL库-片内外设篇-SPI | 泽文i 的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -208,7 +208,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">8051ELL库-片内外设篇-12位ADC</h1>
+                    <h1 class="description center-align post-title">8051ELL库-片内外设篇-SPI</h1>
                 </div>
             </div>
         </div>
@@ -379,28 +379,12 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="STC8系列"><a href="#STC8系列" class="headerlink" title="STC8系列"></a>STC8系列</h2><h3 id="外设介绍"><a href="#外设介绍" class="headerlink" title="外设介绍"></a>外设介绍</h3><p>STC8系列MCU有一个12位高速ADC，速度最快可达到系统时钟频率/2。</p>
-<blockquote>
-<p><strong>ADC转换速度</strong>（工作时钟频率）的范围在 SysClk/2/1 ~ SysClk/2/16 之间。</p>
-</blockquote>
-<blockquote>
-<p><strong>ADC通道</strong> 有16个通道（0~15），P0.0到P0.6，P1.0到P1.7，15通道只能测量内部1.344V参考电压（有1%误差）。</p>
-</blockquote>
-<blockquote>
-<p><strong>数据格式</strong> ADC转换结果的数据格式，有两种，分别是左对齐和右对齐。</p>
-</blockquote>
-<p><strong>注意事项</strong></p>
-<p>MCU与ADC相关的引脚 AVCC、AGND、AVREF<strong>一定不能浮空</strong>。在对精度不高的要求下，可以将AVCC、AVREF连接VCC、AGND连接GND。</p>
-<p>在ADC的电源启动以后，对应的通道IO口，就对被强制设置成高阻输入模式，并关闭此端口上的数字输入通道（其他复用功能全部失效），不过建议在初始化之前，就将IO口设置成高阻输入模式。</p>
-<p>并且由于ADC对应的15路通道IO口，均有复用功能，所以为了避免打开ADC电源的同时，不影响不相关IO的数字功能，建议对ADC电源和通道进行同时设置和选择。如果要对多个通道分时复用，那么可以先设置为一个通道，在采集信号的时候，再分时选择另一个通道。</p>
-<p>以上注意事项，可在代码演示中看到相关例程说明。</p>
-<p>同时要牢记，不同的型号ADC的通道引脚有所不同，不过ELL库已经适配了大部分，但是由于数量较多，为防止遗漏和错误，谨慎起见，还请开发者对照官方数据手操作。</p>
-<p><strong>下图提供ADC相关计算公式：</strong></p>
-<img src=" ../../../../images/8051_ell_lib/doc/ADC.png" style="zoom:75%;" />
-
+                <h2 id="STC8系列"><a href="#STC8系列" class="headerlink" title="STC8系列"></a>STC8系列</h2><h3 id="外设介绍"><a href="#外设介绍" class="headerlink" title="外设介绍"></a>外设介绍</h3><p>SPI是一种全双工的高速通信总线。STC8内部集成了一个SPI外设，支持主机和从机两种模式。</p>
+<p>SPI的通信一般有三种：单主单从、互为主从、单主多从。具体实现方式和原理，可参照STC8的技术手册。</p>
+<p>函数库为了最大限度保证SPI外设的应用灵活性，只保留对外设的配置和初始化，以及基本的操作函数，开发者可以根据需求，自行编写SPI通信应用，以便应对复杂多样的芯片模块。</p>
 <br>
 
-<h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="1-ADC初始化函数"><a href="#1-ADC初始化函数" class="headerlink" title="1. ADC初始化函数"></a>1. ADC初始化函数</h4><table>
+<h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="1-SPI初始化函数"><a href="#1-SPI初始化函数" class="headerlink" title="1. SPI初始化函数"></a>1. SPI初始化函数</h4><table>
 <thead>
 <tr>
 <th align="center">函数名</th>
@@ -408,150 +392,60 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">FSCSTATE <strong>ADC_Init</strong>(const ADC_InitType *ADCx)</td>
-<td align="center">ADC初始化</td>
+<td align="center">FSCSTATE <strong>SPI_Init</strong>(SPIInit_Type *SPIx)</td>
+<td align="center">SPI初始化</td>
 </tr>
 </tbody></table>
 <br>
 
-<h5 id="ADC-InitType-结构体说明"><a href="#ADC-InitType-结构体说明" class="headerlink" title="ADC_InitType 结构体说明"></a>ADC_InitType 结构体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct 
+<h5 id="SPIInit-Type-结构体说明"><a href="#SPIInit-Type-结构体说明" class="headerlink" title="SPIInit_Type  结构体说明"></a>SPIInit_Type  结构体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct 
 &#123;
-    FUNSTATE Power; &#x2F;* ADC电源控制位 *&#x2F;
-	ADCRoad_Type Road; &#x2F;* ADC通道选择 *&#x2F;
-    uint8_t Speed;   &#x2F;* ADC转换速度（工作时钟频率）最大值为0x0F *&#x2F;
-    ADCAlign_Type Align;  &#x2F;* ADC数据格式对齐方式 *&#x2F;
-	FUNSTATE run;   &#x2F;* ADC转换运行控制位 *&#x2F;
-&#125;   ADC_InitType;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  SPIType_Type Type;  &#x2F;&#x2F;SPI通讯类型选择
+  SPIClkSrc_Type ClkSrc; &#x2F;&#x2F;SPI时钟源选择（外设通信速度）
+  SPIMode_Type Mode;  &#x2F;&#x2F;SPI模式
+  SPITran_Type Tran;  &#x2F;&#x2F;SPI发送方式
+  FUNSTATE run;    &#x2F;&#x2F;SPI运行控制位
+&#125; SPIInit_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <br>
 
-<h5 id="ADC-通道-宏定义说明（建议对照数据手册查看）"><a href="#ADC-通道-宏定义说明（建议对照数据手册查看）" class="headerlink" title="ADC_通道 宏定义说明（建议对照数据手册查看）"></a>ADC_通道 宏定义说明（建议对照数据手册查看）</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define    ADC_Road_REV    0x0F	   &#x2F;&#x2F;Test the internal refv voltage
-
-&#x2F;* STC8Ax *&#x2F;
-#define    ADC_Road_P10_8Ax    0x00
-#define    ADC_Road_P11_8Ax    0x01
-#define    ADC_Road_P12_8Ax    0x02
-#define    ADC_Road_P13_8Ax    0x03
-#define    ADC_Road_P14_8Ax    0x04
-#define    ADC_Road_P15_8Ax    0x05
-#define    ADC_Road_P16_8Ax    0x06
-#define    ADC_Road_P17_8Ax    0x07
-#define    ADC_Road_P00_8Ax    0x08
-#define    ADC_Road_P01_8Ax    0x09
-#define    ADC_Road_P02_8Ax    0x0A
-#define    ADC_Road_P03_8Ax    0x0B
-#define    ADC_Road_P04_8Ax    0x0C
-#define    ADC_Road_P05_8Ax    0x0D
-#define    ADC_Road_P06_8Ax    0x0E
-
-&#x2F;* STC8G1K08A 8Pin *&#x2F;
-#define    ADC_Road_P30_8G1K08A    0x00
-#define    ADC_Road_P31_8G1K08A    0x01
-#define    ADC_Road_P32_8G1K08A    0x02
-#define    ADC_Road_P33_8G1K08A    0x03        
-#define    ADC_Road_P54_8G1K08A    0x04
-#define    ADC_Road_P55_8G1K08A    0x05
-
-&#x2F;* STC8G1K08 16Pin and 20Pin &#x2F; STC8G1K08T 20Pin *&#x2F;
-#define    ADC_Road_P10_8G1K08_T    0x00
-#define    ADC_Road_P11_8G1K08_T    0x01
-#define    ADC_Road_P12_8G1K08_T    0x02
-#define    ADC_Road_P13_8G1K08_T    0x03
-#define    ADC_Road_P14_8G1K08_T    0x04
-#define    ADC_Road_P15_8G1K08_T    0x05
-#define    ADC_Road_P16_8G1K08_T    0x06
-#define    ADC_Road_P17_8G1K08_T    0x07
-#define    ADC_Road_P30_8G1K08_T    0x08
-#define    ADC_Road_P31_8G1K08_T    0x09
-#define    ADC_Road_P32_8G1K08_T    0x0A
-#define    ADC_Road_P33_8G1K08_T    0x0B
-#define    ADC_Road_P34_8G1K08_T    0x0C
-#define    ADC_Road_P35_8G1K08_T    0x0D
-#define    ADC_Road_P36_8G1K08_T    0x0E
-
-&#x2F;* STC8G2K64S4 16Pin &#x2F; STC8G2K64S2 *&#x2F;
-#define    ADC_Road_P10_8G2K64S2_S4    0x00
-#define    ADC_Road_P11_8G2K64S2_S4    0x01
-#define    ADC_Road_P12_8G2K64S2_S4    0x02
-#define    ADC_Road_P13_8G2K64S2_S4    0x03
-#define    ADC_Road_P14_8G2K64S2_S4    0x04
-#define    ADC_Road_P15_8G2K64S2_S4    0x05
-#define    ADC_Road_P16_8G2K64S2_S4    0x06
-#define    ADC_Road_P17_8G2K64S2_S4    0x07
-#define    ADC_Road_P00_8G2K64S2_S4    0x08
-#define    ADC_Road_P01_8G2K64S2_S4    0x09
-#define    ADC_Road_P02_8G2K64S2_S4    0x0A
-#define    ADC_Road_P03_8G2K64S2_S4    0x0B
-#define    ADC_Road_P04_8G2K64S2_S4    0x0C
-#define    ADC_Road_P05_8G2K64S2_S4    0x0D
-#define    ADC_Road_P06_8G2K64S2_S4    0x0E
-   
-&#x2F;* STC8H1K28 *&#x2F;
-#define    ADC_Road_P10_8H1K28    0x00
-#define    ADC_Road_P11_8H1K28    0x01
-#define    ADC_Road_P12_8H1K28    0x02
-#define    ADC_Road_P13_8H1K28    0x03
-#define    ADC_Road_P14_8H1K28    0x04
-#define    ADC_Road_P15_8H1K28    0x05
-#define    ADC_Road_P16_8H1K28    0x06
-#define    ADC_Road_P17_8H1K28    0x07
-#define    ADC_Road_P00_8H1K28    0x08
-#define    ADC_Road_P01_8H1K28    0x09
-#define    ADC_Road_P02_8H1K28    0x0A
-#define    ADC_Road_P03_8H1K28    0x0B
-
-&#x2F;* STC8H1K08 *&#x2F;
-#define    ADC_Road_P10_8H1K08    0x00
-#define    ADC_Road_P11_8H1K08    0x01
-#define    ADC_Road_P30_8H1K08    0x08
-#define    ADC_Road_P31_8H1K08    0x09
-#define    ADC_Road_P32_8H1K08    0x0A
-#define    ADC_Road_P33_8H1K08    0x0B
-#define    ADC_Road_P34_8H1K08    0x0C
-#define    ADC_Road_P35_8H1K08    0x0D
-#define    ADC_Road_P36_8H1K08    0x0E
-
-&#x2F;* STC8H3K64S2 &#x2F; STC8H3K64S4 *&#x2F;
-#define    ADC_Road_P10_8H3K64S2_S4    0x00
-#define    ADC_Road_P11_8H3K64S2_S4    0x01
-#define    ADC_Road_P12_8H3K64S2_S4    0x02
-#define    ADC_Road_P16_8H3K64S2_S4    0x06
-#define    ADC_Road_P17_8H3K64S2_S4    0x07
-#define    ADC_Road_P00_8H3K64S2_S4    0x08
-#define    ADC_Road_P01_8H3K64S2_S4    0x09
-#define    ADC_Road_P02_8H3K64S2_S4    0x0A
-#define    ADC_Road_P03_8H3K64S2_S4    0x0B
-#define    ADC_Road_P04_8H3K64S2_S4    0x0C
-#define    ADC_Road_P05_8H3K64S2_S4    0x0D
-#define    ADC_Road_P06_8H3K64S2_S4    0x0E
-
-&#x2F;* STC8H8K64U &#x2F; STC8H2K64T *&#x2F;
-#define    ADC_Road_P10_8H8K64U_2K64T    0x00
-#define    ADC_Road_P11_8H8K64U_2K64T    0x01
-#define    ADC_Road_P54_8H8K64U_2K64T    0x02
-#define    ADC_Road_P13_8H8K64U_2K64T    0x03
-#define    ADC_Road_P14_8H8K64U_2K64T    0x04
-#define    ADC_Road_P15_8H8K64U_2K64T    0x05
-#define    ADC_Road_P16_8H8K64U_2K64T    0x06
-#define    ADC_Road_P17_8H8K64U_2K64T    0x07
-#define    ADC_Road_P00_8H8K64U_2K64T    0x08
-#define    ADC_Road_P01_8H8K64U_2K64T    0x09
-#define    ADC_Road_P02_8H8K64U_2K64T    0x0A
-#define    ADC_Road_P03_8H8K64U_2K64T    0x0B
-#define    ADC_Road_P04_8H8K64U_2K64T    0x0C
-#define    ADC_Road_P05_8H8K64U_2K64T    0x0D
-#define    ADC_Road_P06_8H8K64U_2K64T    0x0E
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<br>
-
-<h5 id="ADCAlign-Type-枚举体说明"><a href="#ADCAlign-Type-枚举体说明" class="headerlink" title="ADCAlign_Type 枚举体说明"></a>ADCAlign_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+<h5 id="SPIType-Type-枚举体说明"><a href="#SPIType-Type-枚举体说明" class="headerlink" title="SPIType_Type 枚举体说明"></a>SPIType_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
-	ADC_Left  &#x3D; 0,  &#x2F;* 数据左对齐，高位四位补零 *&#x2F;
-    ADC_Right &#x3D; 1,  &#x2F;* 数据右对齐，低位四位补零 *&#x2F;
-&#125;	ADCAlign_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  SPI_Type_Master &#x3D; 0x90,    &#x2F;&#x2F;主机模式
+  SPI_Type_Slave  &#x3D; 0x80,    &#x2F;&#x2F;从机模式
+  SPI_Type_Master_Slave &#x3D; 0x00   &#x2F;&#x2F;互为主从机模式
+&#125; SPIType_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <br>
 
+<h5 id="SPIClkSrc-Type-枚举体说明"><a href="#SPIClkSrc-Type-枚举体说明" class="headerlink" title="SPIClkSrc_Type 枚举体说明"></a>SPIClkSrc_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+  SPI_SCLK_DIV_4  &#x3D; 0x00,  &#x2F;&#x2F;系统时钟4分频
+  SPI_SCLK_DIV_8  &#x3D; 0x01,  &#x2F;&#x2F;系统时钟8分频
+  SPI_SCLK_DIV_16 &#x3D; 0x02,  &#x2F;&#x2F;系统时钟16分频
+  SPI_SCLK_DIV_32 &#x3D; 0x03   &#x2F;&#x2F;系统时钟32分频
+&#125; SPIClkSrc_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="2-ADC采样函数"><a href="#2-ADC采样函数" class="headerlink" title="2. ADC采样函数"></a>2. ADC采样函数</h4><table>
+<br>
+
+<h5 id="SPITran-Type-枚举体说明"><a href="#SPITran-Type-枚举体说明" class="headerlink" title="SPITran_Type 枚举体说明"></a>SPITran_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+  SPI_Tran_MSB &#x3D; 0x00,   &#x2F;&#x2F;高字节在前
+  SPI_Tran_LSB  &#x3D; 0x01   &#x2F;&#x2F;低字节在前
+&#125; SPITran_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<br>
+
+<h5 id="SPIMode-Type-枚举体说明"><a href="#SPIMode-Type-枚举体说明" class="headerlink" title="SPIMode_Type 枚举体说明"></a>SPIMode_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
+&#123;
+  SPI_Mode_0  &#x3D; 0x00,  &#x2F;&#x2F;SPI模式0
+  SPI_Mode_1  &#x3D; 0x01,  &#x2F;&#x2F;SPI模式1
+  SPI_Mode_2  &#x3D; 0x02,  &#x2F;&#x2F;SPI模式2
+  SPI_Mode_3  &#x3D; 0x03   &#x2F;&#x2F;SPI模式3
+&#125; SPIMode_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<br>
+
+<h4 id="2-SPI操作函数"><a href="#2-SPI操作函数" class="headerlink" title="2. SPI操作函数"></a>2. SPI操作函数</h4><table>
 <thead>
 <tr>
 <th align="center">函数名</th>
@@ -559,27 +453,17 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">uint16_t <strong>ADC_Get_Sample</strong>(ADCRoad_Type Road, ADCAcc_Type Acc)</td>
-<td align="center">ADC查询采样</td>
+<td align="center">FSCSTATE <strong>SPI_Send_ data</strong>(uint8_t  dat)</td>
+<td align="center">SPI发送数据（一个字节）</td>
 </tr>
 <tr>
-<td align="center">uint16_t <strong>ADC_Get_Sample_interrupt</strong>(ADCRoad_Type Road, ADCAcc_Type Acc)</td>
-<td align="center">ADC中断采样</td>
+<td align="center">FSCSTATE <strong>SPI_Rev_ data</strong>(uint8_t *  dat)</td>
+<td align="center">SPI接收数据（一个字节）</td>
 </tr>
 </tbody></table>
 <br>
 
-<h5 id="ADCRoad-Type-枚举体说明"><a href="#ADCRoad-Type-枚举体说明" class="headerlink" title="ADCRoad_Type 枚举体说明"></a>ADCRoad_Type 枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
-&#123;
-    ADC_Acc_12Bit &#x3D; 0,    &#x2F;* 12位精度 *&#x2F;
-	ADC_Acc_11Bit    ,    &#x2F;* 11位精度 *&#x2F;
-	ADC_Acc_10Bit    ,    &#x2F;* 10位精度 *&#x2F;
-	ADC_Acc_9Bit     ,    &#x2F;*  9位精度 *&#x2F;
-	ADC_Acc_8Bit          &#x2F;*  8位精度 *&#x2F;
-&#125;	ADCAcc_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<br>
-
-<h4 id="3-ADC中断初始化函数"><a href="#3-ADC中断初始化函数" class="headerlink" title="3. ADC中断初始化函数"></a>3. ADC中断初始化函数</h4><table>
+<h4 id="3-SPI端口切换函数"><a href="#3-SPI端口切换函数" class="headerlink" title="3. SPI端口切换函数"></a>3. SPI端口切换函数</h4><table>
 <thead>
 <tr>
 <th align="center">函数名</th>
@@ -587,79 +471,37 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">FSCSTATE <strong>NVIC_ADC_Init</strong>(NVICPri_Type Priority,FUNSTATE State)</td>
-<td align="center">ADC中断初始化</td>
+<td align="center">FSCSTATE <strong>GPIO_SPI_SWPort</strong>(GPIOSWPort_Type Port);</td>
+<td align="center">SPI端口切换</td>
 </tr>
 </tbody></table>
 <br>
 
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;8051_ELL_Lib.h&quot;
 
-<h4 id="4-ADC中断服务函数"><a href="#4-ADC中断服务函数" class="headerlink" title="4. ADC中断服务函数"></a>4. ADC中断服务函数</h4><table>
-<thead>
-<tr>
-<th align="center">函数名</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">void <strong>ADC_ISRQ_Handler</strong>(void)</td>
-<td align="center">ADC中断服务函数</td>
-</tr>
-</tbody></table>
-<br>
-
-<h4 id="5-ADC中断-采样标志位处理函数"><a href="#5-ADC中断-采样标志位处理函数" class="headerlink" title="5. ADC中断/采样标志位处理函数"></a>5. ADC中断/采样标志位处理函数</h4><table>
-<thead>
-<tr>
-<th align="center">函数名</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><strong>ADC_GET_FLAG</strong>()</td>
-<td align="center">ADC获得标志位</td>
-</tr>
-<tr>
-<td align="center"><strong>ADC_CLEAR_FLAG</strong>()</td>
-<td align="center">ADC清理标志位</td>
-</tr>
-</tbody></table>
-<p><strong>说明：</strong>如果在中断服务函数里面调用 <strong>ADC_Get_SampleADC</strong> 采样函数，则不需要处理中断标志，直接调用即可。</p>
-<br>
-
-
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><h4 id="1-初始化ADC"><a href="#1-初始化ADC" class="headerlink" title="1.初始化ADC"></a>1.初始化ADC</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">void STC8x_ADC_Config(void)
+void STC8x_SPI_Config(void)
 &#123;
-	ADC_InitType ADC_InitStruct&#x3D;&#123;0&#125;; &#x2F;* 定义ADC初始化结构体变量 *&#x2F;
-
-	GPIO_MODE_IN_FLOATING(GPIO_P1,Pin_3);  &#x2F;* 对选择的通道，设置成浮空输入模式 *&#x2F;
-	ADC_InitStruct.Power &#x3D; ENABLE;  &#x2F;* 开启ADC电源 *&#x2F;
-	ADC_InitStruct.Road &#x3D; ADC_Road_P13; &#x2F;* 选择P1.3作为ADC通道 *&#x2F;
-	ADC_InitStruct.Speed &#x3D; 0x0F;  &#x2F;* ADC转换速度（最慢，但是更精准） *&#x2F;
-	ADC_InitStruct.Align &#x3D; ADC_Right; &#x2F;* 数据格式右对齐 *&#x2F;
-	ADC_InitStruct.run &#x3D; ENABLE;  &#x2F;* 开启ADC转换 *&#x2F;
-	ADC_Init(&amp;ADC_InitStruct);  &#x2F;* 传入ADC初始化结构体地址， 完成初始化 *&#x2F;
-	NVIC_ADC_Init(NVIC_PR1,ENABLE); &#x2F;* 开启ADC中断，查询法不需要开启中断 *&#x2F;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="2-ADC采样（中断法）"><a href="#2-ADC采样（中断法）" class="headerlink" title="2. ADC采样（中断法）"></a>2. ADC采样（中断法）</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">uint16_t ADC_ dat; &#x2F;* 存放ADC采样转换的结果 *&#x2F;
-void ADC_ISRQ_Handler(void)
-&#123;
-    &#x2F;* 获取ADC采样结果，无需清理标志位 *&#x2F;
-  ADC_ dat &#x3D; ADC_Get_Sample_interrupt(ADC_Road_P13,ADC_Acc_12Bit); 
+    SPIInit_Type SPI_InitStruct&#x3D;&#123;0&#125;;
     
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="3-ADC采样（查询法）"><a href="#3-ADC采样（查询法）" class="headerlink" title="3. ADC采样（查询法）"></a>3. ADC采样（查询法）</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;8051_ELL_Lib.h&quot;
+    SPI_InitStruct.Type &#x3D; SPI_Type_Master;  &#x2F;&#x2F;SPI选择主机模式
+    SPI_InitStruct.ClkSrc &#x3D; SPI_SCLK_DIV_4;  &#x2F;&#x2F;SPI选择4分频
+    SPI_InitStruct.Mode &#x3D; SPI_Mode_0;   &#x2F;&#x2F;SPI工作在模式0
+    SPI_InitStruct.Tran &#x3D; SPI_Tran_MSB; &#x2F;&#x2F;SPI高字节在前发送
+    SPI_InitStruct.run &#x3D; ENABLE;  &#x2F;&#x2F;使能SPI运行
+    SPI_Init(&amp;SPI_InitStruct);
+&#125;
 
 int main(void)
 &#123;
-    uint16_t ADC_ dat;
-    STC8x_ADC_Config();
+    uint8_t  dat &#x3D; &#39;A&#39;;
+    STC8x_SPI_Config();
+    SPI_Send_ data( dat);
     for(;;)
     &#123;
-        ADC_Get_Sample(ADC_Road_P13,ADC_Acc_12Bit);&#x2F;&#x2F;第一次结果不要，舍弃掉
-        ADC_ dat &#x3D; ADC_Get_Sample(ADC_Road_P13,ADC_Acc_12Bit);
+        
     &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>补充：这里SPI的应用，可以参照设备驱动库oled的源代码。</strong></p>
 
                 
             </div>
@@ -686,7 +528,7 @@ int main(void)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zeweni.gitee.io/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-12-wei-adc/">http://zeweni.gitee.io/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-12-wei-adc/</a>
+                    <a href="http://zeweni.gitee.io/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-spi/">http://zeweni.gitee.io/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-spi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1167,18 +1009,18 @@ int main(void)
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-i2c/">
+                <a href="/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-mdu16/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-I2C">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-MDU16">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-I2C</span>
+                        <span class="card-title">8051ELL库-片内外设篇-MDU16</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的I2C
+                            本文主要讲解 8051 ELL函数库的16位硬件乘除器
                         
                     </div>
                     <div class="publish-info">
@@ -1215,18 +1057,18 @@ int main(void)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-bi-jiao-qi/">
+                <a href="/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-i2c/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-比较器">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-I2C">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-比较器</span>
+                        <span class="card-title">8051ELL库-片内外设篇-I2C</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的比较器
+                            本文主要讲解 8051 ELL函数库的I2C
                         
                     </div>
                     <div class="publish-info">
