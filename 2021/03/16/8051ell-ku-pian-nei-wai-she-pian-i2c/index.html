@@ -384,8 +384,7 @@
 <li>发送起始信号（START）以后不进行仲裁</li>
 <li>时钟信号（SCL）停留在低电平时不进行超时检测</li>
 </ul>
-<p>STC8的I2C总线提供了两种操作模式：主机模式和从机模式。</p>
-<p>ELL提供了I2C的基本操作函数，包括初始化和各种信号的操作函数，开发者可以在此基础上灵活编写通信应用。</p>
+<p>STC8的I2C总线提供了两种操作模式：主机模式和从机模式。ELL提供了I2C的基本操作函数，包括初始化和各种信号的操作函数，开发者可以在此基础上灵活编写通信应用。</p>
 <br>
 
 <h3 id="API手册"><a href="#API手册" class="headerlink" title="API手册"></a>API手册</h3><h4 id="1-I2C初始化函数"><a href="#1-I2C初始化函数" class="headerlink" title="1. I2C初始化函数"></a>1. I2C初始化函数</h4><table>
@@ -402,11 +401,15 @@
 </tbody></table>
 <p><strong>wTime：</strong> I2C操作等待时间</p>
 <p><strong>state：</strong> I2C运行使能控制</p>
+<br>
+
+
 <h5 id="I2CType-Type-枚举体说明"><a href="#I2CType-Type-枚举体说明" class="headerlink" title="I2CType_Type  枚举体说明"></a>I2CType_Type  枚举体说明</h5><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef enum
 &#123;
   I2C_Type_Master &#x3D; 0x01,  &#x2F;&#x2F;I2C主机模式
   I2C_Type_Slave  &#x3D; 0x00   &#x2F;&#x2F;I2C从机模式
 &#125; I2CType_Type;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
 
 
 <h4 id="2-I2C操作函数"><a href="#2-I2C操作函数" class="headerlink" title="2. I2C操作函数"></a>2. I2C操作函数</h4><table>
@@ -445,6 +448,8 @@
 <td align="center">I2C发送数据</td>
 </tr>
 </tbody></table>
+<br>
+
 <h4 id="3-I2C端口切换函数"><a href="#3-I2C端口切换函数" class="headerlink" title="3. I2C端口切换函数"></a>3. I2C端口切换函数</h4><table>
 <thead>
 <tr>
@@ -457,6 +462,8 @@
 <td align="center">I2C端口切换</td>
 </tr>
 </tbody></table>
+<br>
+
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p>此处暂不提供代码演示，后续会通过设备驱动库的模块来演示。</p>
 
                 
