@@ -636,28 +636,44 @@ Test the internal 1.344v refv voltage.
 
 
 
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p>```C</p>
-<p>#include “8051_ELL_Lib.h”</p>
-<p>void STC8x_COMP_Config(void)<br>{<br>    COMP_InitType COMP_InitStruct={0};</p>
-<pre><code>GPIO_MODE_IN_FLOATING(GPIO_P3,Pin_7);   //浮空输入
-COMP_InitStruct.PEPin = COMP_PE_P37;    //正极选择P37
-COMP_InitStruct.NEPin = COMP_IN_REV;    //负极选择内部参考电压
-COMP_InitStruct.AC_FTW = ENABLE;       //使能模拟滤波
-COMP_InitStruct.DC_FTW = 0x08;        //开启数字滤波，滤波级别0x08
-COMP_InitStruct.DIRPut = COMP_DIR_Forward;  // 正向输出
-COMP_InitStruct.Output = ENABLE;     //输出比较结果
-COMP_InitStruct.run = ENABLE;       //使能运行
-COMP_Init(&amp;COMP_InitStruct);
-NVIC_COMP_Init(NVIC_PR0,COMP_Tri_Edge);  //开启中断
-</code></pre>
-<p>}</p>
-<p>void COMP_ISRQ_Handler (void)<br>{<br>    uint8_t res;<br>    if(COMP_GET_FLAG())<br>    {<br>        COMP_CLEAR_FLAG();<br>        res = COMP_GET_RES();<br>    }<br>}</p>
-<p>int main(void)<br>{<br>    STC8x_COMP_Config();<br>    for(;;)<br>    {</p>
-<pre><code>&#125;
-</code></pre>
-<p>}</p>
-<p>```C</p>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">
+#include &quot;8051_ELL_Lib.h&quot;
 
+void STC8x_COMP_Config(void)
+&#123;
+	COMP_InitType COMP_InitStruct&#x3D;&#123;0&#125;;
+	
+	GPIO_MODE_IN_FLOATING(GPIO_P3,Pin_7);   &#x2F;&#x2F;浮空输入
+	COMP_InitStruct.PEPin &#x3D; COMP_PE_P37;    &#x2F;&#x2F;正极选择P37
+	COMP_InitStruct.NEPin &#x3D; COMP_IN_REV;    &#x2F;&#x2F;负极选择内部参考电压
+	COMP_InitStruct.AC_FTW &#x3D; ENABLE;       &#x2F;&#x2F;使能模拟滤波
+	COMP_InitStruct.DC_FTW &#x3D; 0x08;        &#x2F;&#x2F;开启数字滤波，滤波级别0x08
+	COMP_InitStruct.DIRPut &#x3D; COMP_DIR_Forward;  &#x2F;&#x2F; 正向输出
+	COMP_InitStruct.Output &#x3D; ENABLE;     &#x2F;&#x2F;输出比较结果
+	COMP_InitStruct.run &#x3D; ENABLE;       &#x2F;&#x2F;使能运行
+	COMP_Init(&amp;COMP_InitStruct);
+	NVIC_COMP_Init(NVIC_PR0,COMP_Tri_Edge);  &#x2F;&#x2F;开启中断
+&#125;
+
+void COMP_ISRQ_Handler (void) 
+&#123;
+    uint8_t res;
+    if(COMP_GET_FLAG())
+    &#123;
+        COMP_CLEAR_FLAG();
+        res &#x3D; COMP_GET_RES();
+    &#125;
+&#125;
+
+int main(void)
+&#123;
+    STC8x_COMP_Config();
+    for(;;)
+	&#123;
+        
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1164,18 +1180,18 @@ NVIC_COMP_Init(NVIC_PR0,COMP_Tri_Edge);  //开启中断
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-12-wei-adc/">
+                <a href="/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-kan-men-gou/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-12位ADC">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-看门狗">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-12位ADC</span>
+                        <span class="card-title">8051ELL库-片内外设篇-看门狗</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的模数转换ADC
+                            本文主要讲解 8051 ELL函数库的看门狗
                         
                     </div>
                     <div class="publish-info">
@@ -1212,18 +1228,18 @@ NVIC_COMP_Init(NVIC_PR0,COMP_Tri_Edge);  //开启中断
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/16/8051ell-ku-pian-nei-wai-she-pian-kan-men-gou/">
+                <a href="/2021/03/16/8051ell-ku-dai-ma-shao-lu/">
                     <div class="card-image">
                         
-                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-片内外设篇-看门狗">
+                        <img src="/images/8051_ell_lib/8051_ELL%E5%87%BD%E6%95%B0%E5%BA%93%E5%B0%81%E9%9D%A2.png" class="responsive-img" alt="8051ELL库-代码烧录">
                         
-                        <span class="card-title">8051ELL库-片内外设篇-看门狗</span>
+                        <span class="card-title">8051ELL库-代码烧录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文主要讲解 8051 ELL函数库的看门狗
+                            本文主要讲解 8051 ELL函数库如何进行编译代码和烧录
                         
                     </div>
                     <div class="publish-info">

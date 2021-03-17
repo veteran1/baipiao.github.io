@@ -458,26 +458,28 @@
 <br>
 
 
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p>```C</p>
-<p>#include “8051_ELL_Lib.h”</p>
-<p>int main(void)<br>{<br>    uint32_t mol,den,quo,rem;</p>
-<pre><code>mol = 1000000;
-den = 1000;
-quo = 0;
-rem = 0;
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">
+#include &quot;8051_ELL_Lib.h&quot;
 
-void STC8x_System_Init();
-
-DIV_16_BIT(mol, den, quo,rem);
-printf(&quot;%d&quot;,rem);
-for(;;)
+int main(void)
 &#123;
-   
-&#125;
-</code></pre>
-<p>}</p>
-<p>```C</p>
+    uint32_t mol,den,quo,rem;
 
+    mol &#x3D; 1000000;
+    den &#x3D; 1000;
+    quo &#x3D; 0;
+    rem &#x3D; 0;
+
+    void STC8x_System_Init();
+
+    DIV_16_BIT(mol, den, quo,rem);
+    printf(&quot;%d&quot;,rem);
+    for(;;)
+    &#123;
+       
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
