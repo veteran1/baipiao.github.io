@@ -818,18 +818,18 @@
 
 
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><blockquote>
-<p>这里以PCA作为扩展定时器演示：</p>
+<p>PCA作为扩展定时器：</p>
 </blockquote>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;8051_ELL_Lib.h&quot;
 
 void STC8x_PCA_Config(void)
 &#123;
     &#x2F;* 先初始化PCA_TIM *&#x2F;
-	PCA0_TIM_Init(1000);   &#x2F;&#x2F;定时1s
+	PCA0_TIM_Init(1000);   &#x2F;&#x2F;定时1ms
 	NVIC_PCA0_TIM_POP_Init(ENABLE); &#x2F;&#x2F;启动中断
 	
     &#x2F;* 再初始化 PCA_CNT *&#x2F;
-	PCA_CNT_Init(PCA_SCLK,ENABLE);  
+	PCA_CNT_Init(PCA_SCLK_DIV_1,ENABLE);  
 	NVIC_PCA_CNT_Init(NVIC_PR1,DISABLE); &#x2F;&#x2F;启动PCA计数器
 &#125;
 
@@ -851,8 +851,46 @@ int main(void)
         
     &#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>PCA作为PWM：</p>
+</blockquote>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;8051_ELL_Lib.h&quot;
 
+void STC8x_PCA_Config(void)
+&#123;
+    TIMER_InitType TIMER_InitStruct&#x3D;&#123;0&#125;;
+    &#x2F;*
+     * PCA to PWM frequency:
+     * If system clock frequency &#x3D;&#x3D; 24Mhz,
+     * to configure PCA clock source &#x3D; Timer0 overflow pulse,
+     * to configure timer0 &#x3D; 19 us
+     * to configure PCA  bits &#x3D; 10 bits
+     * so pca of clock source &#x3D; 52.6KHZ
+     * so, PCA to PWM frequency &#x3D; 52.6 &#x2F; 1024 Hz &#x3D; 51Hz
+     *&#x2F;
+	TIMER_InitStruct.Mode &#x3D; TIMER_16BitAutoReload;
+	TIMER_InitStruct.Value &#x3D; 19;     &#x2F;&#x2F;19us
+	TIMER_InitStruct.Run &#x3D; ENABLE;
+	TIMER0_Init(&amp;TIMER_InitStruct);
+    
+    &#x2F;*
+     * duty:
+     * to configure PCA  bits &#x3D; 10 bits
+     * to  value &#x3D; 0x200
+     * so, duty &#x3D; (0x400 - 0x200) &#x2F; 0x400 &#x3D; 50%
+     *&#x2F;
+     PCA0_PWM_10BITS_CTRL(0x200);
+     PCA_CNT_Init(PCA_TIMER0,ENABLE);
+&#125;
 
+int main(void)
+&#123;
+    STC8x_PCA_Config();
+    for(;;)
+    &#123;
+        
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
