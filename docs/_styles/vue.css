@@ -259,10 +259,11 @@ main.hidden {
     font-weight: 700;
     text-align: center;
 }
+
 /* 侧边栏首标题颜色 */
 .sidebar>h1 a {
     color: inherit;
-    color: #81c268;
+    color: #33c06e;
     text-decoration: none;
 }
 
