@@ -1,2 +1,2 @@
-<!-- zh-cn/_sidebar.md -->
+<!-- docs/_sidebar.md -->
 

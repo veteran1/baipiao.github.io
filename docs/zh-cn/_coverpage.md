@@ -1,6 +1,6 @@
 <!-- _coverpage.md -->
 
-<img src="_media/icon.svg" alt="logo" style="zoom:60%;" />
+<img src="../../_media/icon.svg" alt="logo" style="zoom:60%;" />
 
 > 专门为增强型1T8051内核MCU设计
 
@@ -10,5 +10,5 @@
 
 [Gitee](https://gitee.com/zeweni/ELL-8051-LIB)
 [Github](https://github.com/zewen-i/8051-ELL-LIB)
-[应用案例](zh-cn/app/app.md)
+[应用案例](zh-cn/app.md)
 [API手册](https://zewen-i.github.io/8051-ELL-API/)
