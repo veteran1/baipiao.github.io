@@ -11,4 +11,4 @@
 [Gitee](https://gitee.com/zeweni/ELL-8051-LIB)
 [Github](https://github.com/zewen-i/8051-ELL-LIB)
 [应用案例](zh-cn/app.md)
-[API手册](https://zewen-i.github.io/8051-ELL-library-API-Document-Center/)
+[API手册](https://zewen-i.github.io/8051-ELL-API/)
