@@ -11,4 +11,4 @@
 [Gitee](https://gitee.com/zeweni/ELL-8051-LIB)
 [Github](https://github.com/zewen-i/8051-ELL-LIB)
 [应用案例](zh-cn/app/app.md)
-[API手册](https://8051-ell-api.vercel.app/index.html/)
+[API手册](https://8051-ell-api.vercel.app/index.html)
