@@ -23,7 +23,7 @@
 
 
 
-* [Gitee仓库](https://gitee.com/zeweni/ELL-8051-LIB) ，下载速度快，但需要注册账户。
+* [Gitee仓库](https://gitee.com/open-ell/code) ，下载速度快，但需要注册账户。
 
 * [Github仓库](https://github.com/zewen-i/8051-ELL-LIB) ，下载速度慢，但不需要注册账户。
 
@@ -35,7 +35,7 @@
 如果你使用git工具，那么更新库将会变得非常方便，你只需要在一个文件夹中右键打开控制台，然后输入：
 
 ```
-git clone https://gitee.com/zeweni/ELL-8051-LIB.git
+git clone https://gitee.com/open-ell/code.git
 ```
 
 即可完成下载。
@@ -55,16 +55,14 @@ git clone https://gitee.com/zeweni/ELL-8051-LIB.git
 | 一级目录  |  二级目录   |        描述         |
 | :-------: | :---------: | :-----------------: |
 |    doc    |     ...     |    一些文档资料     |
-| examples  |             |      示例工程       |
+| examples  |     ---     |      示例工程       |
 |           |   STC8Ax    | STC8A系列的示例代码 |
 |           |   STC8Cx    | STC8C系列的示例代码 |
 |           |     ...     |      其他型号       |
-| libraries |             |      ELL库文件      |
+| libraries |     ---     |      ELL库文件      |
 |           |    core     |  寄存器和启动文件   |
-|           | components  |       组件库        |
 |           | peripherals |  芯片的片内外设库   |
-|           |   drives    |     设备驱动库      |
-|  project  |             |      模板工程       |
+|  project  |     ---     |      模板工程       |
 |           |   STC8Ax    | STC8A系列的模板工程 |
 |           |   STC8Cx    | STC8C系列的模板工程 |
 |           |     ...     |      其他型号       |
@@ -105,12 +103,8 @@ git clone https://gitee.com/zeweni/ELL-8051-LIB.git
 	|--startup_stc8h.s
 |--lib/peripherals:片内外设库分支：和本型号相关的一些外设模块
 	|--...
-|--lib/components:组件库分支：提供好用的组件，比如TMT任务框架、精准延时组件等
-	|--...
-|--lib/drives:设备驱动库分支
-	|--...
 |--user/main: main分支：对于系统的初始化和中断操作
-    |--Lib_CFG.h	ELL库配置头文件
+    |--ELL_CFG.h	ELL库配置头文件
     |--main.c	main函数入口文件
     |--init.c   系统初始化文件
     |--isr.c    中断服务函数文件
@@ -127,7 +121,7 @@ git clone https://gitee.com/zeweni/ELL-8051-LIB.git
 
 
 
-分两步走，一个是对启动文件的配置，一个是对Lib_CFG.h的配置。
+分两步走，一个是对启动文件的配置，一个是对ELL_CFG.h的配置。
 
 
 
@@ -251,7 +245,7 @@ DEBUGXDATALEN    EQU    300H
 
 
 
-> ELL库默认的配置（main/Lib_CFG.h）：
+> ELL库默认的配置（main/ELL_CFG.h）：
 
 * 采用ELL自动获取系统时钟频率（仅限于内部IRC时钟）
 
@@ -583,16 +577,4 @@ STC-Monitor分为两个部分，一个是安装在Keil中的调试组件(相当�
 > 为什么有的时候仿真会跑飞？
 
 答：仿真也是占用XDATA的，会受到内存限制，同时要注意我们的代码内，是否有访问到硬件仿真占用的XDATA区。
-
-
-
-## 进阶教程
-
-
-
-我在知识星球里面，提供了更加详实和丰富的入门教程，可以帮助你定制属于自己ELL-SDK包，有利于客制化和工程开发。
-
-
-
-[超级详细的ELL工程创建教程 - 定制属于你的SDK](https://t.zsxq.com/ybMvVrZ)
 
