@@ -8,6 +8,6 @@
 - <font size=3>完美支持STC8主流芯片及仿真调试</font>
 
 [Gitee](https://gitee.com/open-ell/code)
-[Github](https://github.com/zewen-i/8051-ELL-LIB)
+[Github](https://gitee.com/open-ell/code)
 [应用案例](zh-cn/app/app.md)
 [API手册](https://8051-ell-api.vercel.app/index.html)

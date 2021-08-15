@@ -2,7 +2,7 @@
 
 <img src="_media/download.svg" alt="logo" style="zoom:10%;" /> <font color=#0ddff>[ <u>**从gitee下载8051-ELL**</u>](https://gitee.com/zeweni/ELL-8051-LIB) </font> 
 
-[![](https://img.shields.io/badge/version-1.1.6-green)](https://github.com/zewen-i/8051-ELL-LIB) [![](https://badgen.net/github/license/zewen-i/8051-ELL-LIB?color=orange)](https://github.com/zewen-i/8051-ELL-LIB) [![](https://badgen.net/github/stars/zewen-i/8051-ELL-LIB?color=green)](https://github.com/zewen-i/8051-ELL-LIB) [![](https://badgen.net/github/forks/zewen-i/8051-ELL-LIB)](https://github.com/zewen-i/8051-ELL-LIB) <a href='https://gitee.com/zeweni/ELL-8051-LIB/stargazers'><img src='https://gitee.com/zeweni/ELL-8051-LIB/badge/star.svg?theme=white' alt='star'></img></a> <a href='https://gitee.com/zeweni/ELL-8051-LIB/members'><img src='https://gitee.com/zeweni/ELL-8051-LIB/badge/fork.svg?theme=gray' alt='fork'></img></a>
+[![](https://img.shields.io/badge/version-1.1.6-green)](https://gitee.com/open-ell/code) [![](https://badgen.net/github/license/zewen-i/8051-ELL-LIB?color=orange)](https://gitee.com/open-ell/code) [![](https://badgen.net/github/stars/zewen-i/8051-ELL-LIB?color=green)](https://gitee.com/open-ell/code) [![](https://badgen.net/github/forks/zewen-i/8051-ELL-LIB)](https://gitee.com/open-ell/code) <a href='https://gitee.com/zeweni/ELL-8051-LIB/stargazers'><img src='https://gitee.com/zeweni/ELL-8051-LIB/badge/star.svg?theme=white' alt='star'></img></a> <a href='https://gitee.com/zeweni/ELL-8051-LIB/members'><img src='https://gitee.com/zeweni/ELL-8051-LIB/badge/fork.svg?theme=gray' alt='fork'></img></a>
 
 
 
