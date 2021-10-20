@@ -1,4 +1,4 @@
 <!-- docs/_sidebar.md -->
 
-- [快速入门](start/start.md)
-- [应用案例](app/app.md)
+- [测试一](start/start.md)
+- [测试二](app/app.md)
