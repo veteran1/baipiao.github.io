@@ -1,6 +1,6 @@
 <!-- _coverpage.md -->
 
-<img src="_media/icon.png" alt="logo" style="zoom:30%;" />
+<img src="_media/icon.png" alt="logo" style="zoom:25%;" />
 
 > **格物致知，多维创新**
 
