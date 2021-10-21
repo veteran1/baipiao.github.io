@@ -7,6 +7,6 @@
 
 - <font size=3>专为ARM开发服务</font>
 
-[数据手册](https://skyeye-cdc.gitee.io/home/)
-[芯片型号](https://skyeye-cdc.gitee.io/home/)
-[API手册](https://skyeye-cdc.gitee.io/home/)
+[数据手册](https://arm-udc.gitee.io/home)
+[芯片型号](https://arm-udc.gitee.io/home)
+[API手册](https://arm-udc.gitee.io/home)
