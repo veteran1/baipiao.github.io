@@ -2,11 +2,11 @@
 
 <img src="_media/icon.png" alt="logo" style="zoom:25%;" />
 
-> **格物致知，多维创新**
+> **Open-SkyEye 维基百科**
 
 
-- <font size=3>专为ARM开发服务</font>
+- <font size=3>专为开发者服务</font>
 
-[数据手册](https://arm-udc.gitee.io/home)
-[芯片型号](https://arm-udc.gitee.io/home)
-[API手册](https://arm-udc.gitee.io/home)
+[示例一](https://open-skyeye.gitee.io/wiki)
+[示例二](https://open-skyeye.gitee.io/wiki)
+[示例三](https://open-skyeye.gitee.io/wiki)
