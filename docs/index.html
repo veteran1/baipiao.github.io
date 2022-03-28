@@ -16,14 +16,41 @@
     <div id="app"></div>
     <script>
         window.$docsify = {
-            name: 'Open-SkyEye Wiki',
-            repo: 'https://open-skyeye.gitee.io/wiki',
-            loadSidebar: true,
-            autoHeader: true,
-            subMaxLevel: 2,
             coverpage: true,
+            auto2top: true,
+            executeScript: true,
+            relativePath: true,
+            loadNavbar: true,
+            loadSidebar: true,
             mergeNavbar: true,
-            relativePath: true, // 启用相对路径
+            maxLevel: 6,
+            subMaxLevel: 2,
+            repo: 'https://open-skyeye.gitee.io/wiki/#/',
+            name: '<span>Open-SkyEye Wiki</span>',
+            coverpage: ['/'],
+            requestHeaders: {
+                'cache-control': 'max-age=5',
+            },
+            scrollToTop: {
+                auto: true,
+                text: 'Top',
+                right: 15,
+                bottom: 15,
+                offset: 500
+            },
+            'flexible-alerts': {
+                style: 'flat'
+            },
+            alias: {
+                '/zh-cn/.*/_sidebar.md':'/zh-cn/quick-start/_sidebar.md',
+            },
+            tabs: {
+                persist: true,    // default
+                sync: true,       // default
+                theme: 'classic', // default
+                tabComments: true, // default
+                tabHeadings: true // default
+            },
             search: {
                 placeholder: '搜索',
                 noData: '找不到结果!',
@@ -32,44 +59,65 @@
             formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',
             search: {
                 noData: {
-                '/': '没有结果'
+                    '/': '没有结果'
                 },
                 paths: 'auto',
                 placeholder: {
-                '/': '搜索'
+                    '/': '搜索'
+                }
             },
             plugins: [
                 function (hook, vm) {
-                    hook.ready(function (){
-                    // true = show debug log
-                    let TARGET_QUERY = 'id'
-                    let SCROLL_DELAY = 1500 // in milisecond
-                    let location = window.location
-                    let currentUrlWithoutHash = new URL(
-                            location.origin+location.pathname+
-                            location.search+location.hash.substring(1)
-                    )
-                    let urlQueryParam = currentUrlWithoutHash.searchParams
-                    let isUrlHasIdQuery = urlQueryParam.has(TARGET_QUERY)
-                    if(isUrlHasIdQuery){
-                    let urlId = urlQueryParam.get(TARGET_QUERY)
-                    // run delayed, to make sure everything loaded
-                    setTimeout(function() {
-                        try{
-                        if(window.localStorage.getItem(urlId)==undefined)
-                        {
-                            location.reload()
-                            window.localStorage.setItem(urlId, '1');
+                    hook.ready(function () {
+                        // true = show debug log
+                        let TARGET_QUERY = 'id'
+                        let SCROLL_DELAY = 1500 // in milisecond
+                        let location = window.location
+                        let currentUrlWithoutHash = new URL(
+                            location.origin + location.pathname +
+                            location.search + location.hash.substring(1)
+                        )
+                        let urlQueryParam = currentUrlWithoutHash.searchParams
+                        let isUrlHasIdQuery = urlQueryParam.has(TARGET_QUERY)
+                        if (isUrlHasIdQuery) {
+                            let urlId = urlQueryParam.get(TARGET_QUERY)
+                            // run delayed, to make sure everything loaded
+                            setTimeout(function () {
+                                try {
+                                    if (window.localStorage.getItem(urlId) == undefined) {
+                                        location.reload()
+                                        window.localStorage.setItem(urlId, '1');
+                                    }
+                                } catch (e) { }
+                            }, SCROLL_DELAY);
+                            setTimeout(function () {
+                                window.localStorage.removeItem(urlId)
+                            }, 1000)
                         }
-                        } catch(e){}
-                    }, SCROLL_DELAY);
-                    setTimeout(function(){
-                        window.localStorage.removeItem(urlId)
-                    },2000)
-                    }
-                })
-                }]
-            },
+                    }),
+                        hook.beforeEach(function (html) {
+                            //Get browser basic properties
+                            var brower = navigator.userAgent;
+                            //If it's not Google, Firefox or compass browser, you'll be prompted.
+                            if (brower.toLowerCase().indexOf("chrome") < 0 && brower.toLowerCase().indexOf("firefox") < 0 && brower.toLowerCase().indexOf("safari") < 0) {
+                                var msg = document.getElementById("msg");
+                                msg.innerHTML = "你的浏览器不兼容，请使用 Chrome,Firefox,Safari 等浏览器浏览。";
+                                document.getElementsByClassName("pt-message")[0].style.display = "block";
+                                setInterval('transTip()', 2000);
+                            }
+                            var url = 'https://gitee.com/open-skyeye/wiki/tree/master/docs/' + vm.route.file
+                            var editHtml = '[:pencil: 「点我」编辑此Wiki ](' + url + ') &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[:page_facing_up:「点我」了解修改规范 ](/README?id=在线文档开发介绍)\n'
+
+                            return '\n\n' +
+                                editHtml +
+                                html +
+                                '\n\n----\n' +
+                                '>我有疑问：  ' +
+                                '[提交「文档issue」](https://gitee.com/open-skyeye/wiki/issues) &nbsp;&nbsp;&nbsp;' +
+                                '[提交「代码issue」](https://gitee.com/open-skyeye/code/issues)     '
+                        })
+                }
+            ]
         }
     </script>
     <script src="_scripts/docsify.min.js"></script>

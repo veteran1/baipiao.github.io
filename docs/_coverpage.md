@@ -6,6 +6,6 @@
 
 - <font size=3>努力做世界级的嵌入式虚拟化平台</font>
 
-[常用文档](https://open-skyeye.gitee.io/wiki)
+[常用教程](https://open-skyeye.gitee.io/wiki)
 [环境下载](https://open-skyeye.gitee.io/wiki)
-[快速开始](https://open-skyeye.gitee.io/wiki)
+[快速开始](/zh-cn/quick-start/quick-start.md)
