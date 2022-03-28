@@ -11,8 +11,6 @@
   <link rel="stylesheet" href="_styles/vue.css">
   <link rel="stylesheet" href="_styles/sidebar.min.css">
   <!-- <link rel="stylesheet" href="_styles/sweetalert.min.css" type='text/css' media='all' /> -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 </head>
 <style>
   .pt-message {
@@ -167,23 +165,7 @@
   <script src="_scripts/external-script.min.js"></script>
   <!-- <script src="_scripts/sweetalert.min.js"></script> -->
   <script src="_scripts/docsify-plugin-flexible-alerts.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-  <script>
-  var gitalk = new Gitalk({
-      clientID: '519ea88fd8b736b27b1e', //clientID 
-      clientSecret: '34d45f15101fe1c1746b0ce9455760a1f628d989', //clientSecret
-      repo: 'wiki', // 评论仓库名
-      owner: '405e20100b5dd394762ec7307dac1c53e51d87de ',
-      admin: ['zevorn'], //管理人
-      id: location.pathname, // 返回当前 URL 的路径部分作为id
-      language:'zh-CN', //语言
-      distractionFreeMode: false  // 无干扰模式
-  })
-  gitalk.render('gitalk-container')
-  </script>
+ 
 </body>
 
 </html>
