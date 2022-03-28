@@ -1,11 +1,11 @@
 <!-- _coverpage.md -->
 
+# Open-SkyEye Wiki
 
-> **Open-SkyEye 维基百科**
+<img src="_media/icon.png" alt="logo" style="zoom:30%;" />
 
+- <font size=3>努力做世界级的嵌入式虚拟化平台</font>
 
-- <font size=3>专为开发者服务</font>
-
-[示例一](https://open-skyeye.gitee.io/wiki)
-[示例二](https://open-skyeye.gitee.io/wiki)
-[示例三](https://open-skyeye.gitee.io/wiki)
+[常用文档](https://open-skyeye.gitee.io/wiki)
+[环境下载](https://open-skyeye.gitee.io/wiki)
+[快速开始](https://open-skyeye.gitee.io/wiki)
