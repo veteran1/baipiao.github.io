@@ -1,4 +1,4 @@
 <!-- docs/_sidebar.md -->
 
-- [测试一](start/start.md)
-- [测试二](app/app.md)
+- [快速开始](quick-start/quick-start.md)
+- [环境部署](env-doc/env-doc.md)

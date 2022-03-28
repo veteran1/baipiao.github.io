@@ -41,9 +41,6 @@
             'flexible-alerts': {
                 style: 'flat'
             },
-            alias: {
-                '/zh-cn/.*/_sidebar.md':'/zh-cn/quick-start/_sidebar.md',
-            },
             tabs: {
                 persist: true,    // default
                 sync: true,       // default
@@ -105,7 +102,7 @@
                                 document.getElementsByClassName("pt-message")[0].style.display = "block";
                                 setInterval('transTip()', 2000);
                             }
-                            var url = 'https://gitee.com/open-skyeye/wiki/tree/master/docs/' + vm.route.file
+                            var url = 'https://gitee.com/open-skyeye/wiki/edit/master/docs/' + vm.route.file
                             var editHtml = '[:pencil: 编辑此 Wiki ](' + url + ') &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[:page_facing_up:「了解修改规范」 ](/README?id=修改规范说明)\n'
 
                             return '\n\n' +
@@ -128,11 +125,35 @@
     <script src="_scripts/docsify-sidebar-collapse.min.js"></script>
     <script src="_scripts/docsify-scroll-to-top.min.js"></script>
     <script src="_scripts/docsify-copy-code.js"></script>
-
+    <!-- <script src="_scripts/sweetalert.min.js"></script>
+  <script>
+    document.body.oncopy = function () {
+      swal("复制成功 🎉",
+        "如果你觉得本仓库不错，那就来 GitHub 给个 Star 吧 😊",
+        "success");
+    };
+  </script> -->
     <script src="_scripts/zoom-image.min.js"></script>
     <script src="_scripts/external-script.min.js"></script>
-    <script src="_scripts/sweetalert.min.js"></script>
+    <!-- <script src="_scripts/sweetalert.min.js"></script> -->
     <script src="_scripts/docsify-plugin-flexible-alerts.min.js"></script>
+
+    <script>
+        var im = 0;
+
+        function transTip() {
+            if (im > 3)
+                document.getElementsByClassName("pt-message")[0].style.display = "none";
+            im++;
+        }
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a6a32891739f0de6462245eb4fa7b59c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </body>
 
 </html>
