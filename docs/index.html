@@ -23,15 +23,12 @@
     border: 1px dotted #fdab63;
     z-index: 99999;
   }
+
   .pt-message p {
     margin: 0;
     line-height: 50px;
     font-size: 20px;
   }
-  #gitalk-container {
-        max-width: 600px;
-        margin: 0 auto;
-    }
 </style>
 
 <body>
@@ -77,49 +74,18 @@
         tabHeadings: true       // default
       },
       search: {
-        placeholder: '搜索',
-        noData: '找不到结果!',
-        depth: 3
-      },
-      formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',
-      search: {
         noData: {
-          '/': '没有结果'
+          '/': 'No results!'
         },
+        depth: 6,
         paths: 'auto',
         placeholder: {
-          '/': '搜索'
+          '/': 'Search'
         }
       },
+
       plugins: [
         function (hook, vm) {
-          hook.ready(function () {
-            // true = show debug log
-            let TARGET_QUERY = 'id'
-            let SCROLL_DELAY = 1500 // in milisecond
-            let location = window.location
-            let currentUrlWithoutHash = new URL(
-              location.origin + location.pathname +
-              location.search + location.hash.substring(1)
-            )
-            let urlQueryParam = currentUrlWithoutHash.searchParams
-            let isUrlHasIdQuery = urlQueryParam.has(TARGET_QUERY)
-            if (isUrlHasIdQuery) {
-              let urlId = urlQueryParam.get(TARGET_QUERY)
-              // run delayed, to make sure everything loaded
-              setTimeout(function () {
-                try {
-                  if (window.localStorage.getItem(urlId) == undefined) {
-                    location.reload()
-                    window.localStorage.setItem(urlId, '1');
-                  }
-                } catch (e) { }
-              }, SCROLL_DELAY);
-              setTimeout(function () {
-                window.localStorage.removeItem(urlId)
-              }, 2000)
-            }
-          }),
             hook.beforeEach(function (html) {
               //Get browser basic properties
               var brower = navigator.userAgent;
@@ -128,7 +94,7 @@
                 var msg = document.getElementById("msg");
                 msg.innerHTML = "你的浏览器不兼容，请使用 Chrome,Firefox,Safari 等浏览器浏览。";
                 document.getElementsByClassName("pt-message")[0].style.display = "block";
-                setInterval('transTip()', 2000);
+                setInterval('transTip()', 1000);
               }
               var url = 'https://gitee.com/open-skyeye/wiki/edit/master/docs/' + vm.route.file
               var editHtml = '[:pencil: 编辑此 Wiki ](' + url + ') &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[:page_facing_up:「了解修改规范」 ](/README?id=修改规范说明)\n'
@@ -145,8 +111,8 @@
       ]
     }
   </script>
-  <script src="_scripts/docsify.min.js"></script>
-  <script src="_scripts/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="_scripts/emoji.min.js"></script>
   <script src="_scripts/prism-c.min.js"></script>
   <script src="_scripts/docsify-tabs.js"></script>
@@ -165,7 +131,7 @@
   <script src="_scripts/external-script.min.js"></script>
   <!-- <script src="_scripts/sweetalert.min.js"></script> -->
   <script src="_scripts/docsify-plugin-flexible-alerts.min.js"></script>
- 
+
 </body>
 
 </html>
