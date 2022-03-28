@@ -1,4 +1,5 @@
 var url = {
-  "index.md": "other/novice-guide/README.md",
- 
+  "README.md": "README.md",
+  "zh-cn/quick-start/quick-start.md": "zh-cn/quick-start/quick-start.md",
+  "zh-cn/env-doc/env-doc.md": "zh-cn/env-doc/env-doc",
 }
