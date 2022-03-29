@@ -81,6 +81,8 @@ docker run -it \
 ./autogen.sh && ./configure --prefix=/home/skyeye-workspace/opt/skyeye && make -j4 && make install
 ```
 
+如果不指定./configure --prefix，那么Open-SkyEye将默认安装在`/opt/skyeye`下面。
+
 等待编译完后，看到如下图：
 
 ![](media/04.png)
@@ -92,7 +94,33 @@ docker run -it \
 ****
 # 命令行cli的使用
 
-正在更新。
+输入help，可以查看Open-SkyEye支持的命令，这里我们通过加载一个测试用例，来展示常用的一些命令。
+
+![](media/06.png)
+
+这里为了操作方便，我们先输入`q`退出，然后进入测试用例对应的目录，这里我们选择arm的s3c6410，用它仿真运行linux：
+
+![](media/07.png)
+
+在这里启动Open-SkyEye,然后输入`run-script s3c6410.skyeye`
+
+![](media/08.png)
+
+再输入`run`,此时会弹出一个窗口，这是串口输出终端，会看到有信息打印：
+
+![](media/09.png)
+
+此时，我们已经成功运行起来linux了！，你可以尝试在弹窗内输入命令操作仿真的linux了。
+
+回到Open-SkyEye的终端，我们再介绍一下其他命令，输入`list-cpu`，打印一下仿真的处理器核心名称，这是其他命令经常会用到的参数。
+
+![](media/10.png)
+
+再输入`speed arm11_0`, 可以查看仿真处理器的速度：
+
+![](media/11.png)
+
+其他命令，会在用户教程章节的命令行手册，详细介绍。
 
 
 ****
