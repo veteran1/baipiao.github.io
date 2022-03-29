@@ -15,7 +15,7 @@ Open-SkyEye的发行版，基于Docker打包，只需要安装docker，就能正
 
 除了安装Docker和下载镜像，你还需要clone或者下载一些代码（Open-SkyEye源代码和测试用例）。链接清单如下：
 
-[Docker开发镜像]()
+[Docker开发镜像](https://pan.baidu.com/s/1BCjX7FmBQxDxf_eBSuPpSw)（提取码：skye）
 
 [Open-SkyEye源代码](https://gitee.com/open-skyeye/code) (或 git clone https://gitee.com/open-skyeye/code.git)
 
