@@ -1,17 +1,18 @@
 <!-- _navbar.md -->
 
 - 下载
-  - [发行版](/en/)
-  - [源代码](/zh-cn/)
-  - [Docker](downloads/docker/docker-download.md)
-
+  - [发行版](https://gitee.com/open-skyeye/code/releases)
+  - [源代码](https://gitee.com/open-skyeye/code)
+  - [开发镜像](downloads/docker/docker-download.md)
+  - [测试用例](https://gitee.com/open-skyeye/testcase)
+  
 - 社区
   - [会议日历](/zh-cn/)
   - [加入我们](/en/)
 
 - 探索
   - [子项目](/en/)
-  - [有趣实验](/zh-cn/)
+  - [合作]](/zh-cn/)
 
 - 新闻
   - [公众号](/zh-cn/)
