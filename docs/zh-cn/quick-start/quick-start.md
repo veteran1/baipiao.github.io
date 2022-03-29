@@ -1,7 +1,7 @@
 # 
 # 前言
 
-Open-SkyEye是一款可建模的国产嵌入式仿真软件，拥有良好的开源基因。虽然经历了商业孵化，但获得一定的发展之后，我们还是决定，将我们的许多成果，继续贡献和回馈给开源社区。Open-SkyEye最早在linux上面开发，为了保持优良的传统，Open-SkyEye的发行方式，还是以linux为主，不过考虑到由使用windows和macos的小伙伴，Open-SkyEye会提供Docker镜像，已经打包好了开发环境，可以很方便的快速体验和上手Open-SkyEye。
+Open-SkyEye是一款可建模的国产嵌入式仿真软件，拥有良好的开源基因。虽然经历了商业孵化，但有一定发展以后，我们还是决定，将我们的一些成果，继续贡献和回馈给开源社区。Open-SkyEye最早是在linux上面开发的，为了保持优良的传统，后续Open-SkyEye的发行方式，还是以linux为主，不过考虑到有使用windows和macos的小伙伴，Open-SkyEye会提供Docker镜像，已经打包好了开发环境，可以很方便的快速体验和上手Open-SkyEye。
 
 本章节，主要从Open-SkyEye的安装、运行、常用命令等方面入手，并通过一个简单的例子，带领大家快速熟悉和掌握Open-SkyEye，能够应用到日常学习、开发当中。
 
