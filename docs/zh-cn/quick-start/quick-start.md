@@ -35,15 +35,18 @@ git clone https://gitee.com/open-skyeye/testcase.git
 ```
 ## 二、导入镜像，并新建容器。
 
-以ubuntu20.04为例，在进入镜像所在目录以后，请使用如下命令导入镜像：
+以ubuntu20.04为例，首先启动docker服务，命令为`sudo service docker start`,不同的操作系统或者平台，可能方法不同，可自行查阅。
+
+之后进入镜像所在目录，并使用如下命令导入镜像：
 
 `docker load < open-skyeye-developer-docker.tar`
 
-这个时候可以使用`docker images`命令，查看镜像列表，看看是否导入成功。
+这个时候，可以使用`docker images`命令，查看镜像列表，看看是否导入成功：
 
 ![](media/01.png)
 
 现在，我们基于这个镜像，新建一个容器，这个命令有些复杂，先贴出来再解释：
+
 ```
 docker run -it \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -53,20 +56,38 @@ docker run -it \
 -e GDK_DPI_SCALE \
 --name open-skyeye skyeye:sky-dev /bin/bash
 ```
+
 首先，`run`是创建容器的基本命令，`-v  /tmp/.X11-unix:/tmp/.X11-unix`、`-e DISPLAY=:0 -e GDK_SCALE -e GDK_DPI_SCALE`是将宿主机的显示能力共享给容器， `-v /home/zevorn/skyeye-workspace/:/home/skyeye-workspace`是将一个文件夹共享给容器，open-skyeye的源代码和测试用例都放在这个文件夹下。 `--name open-skyeye skyeye:sky-dev`是给容器命名，后面跟着的是镜像名称，`/bin/bash`是以bash启动。更多关于Docker的使用方法和命令，后续由其他章节来描述。
 
 其中共享主机的显示能力不是必须的，如果你不使用Open-SkyEye的UI和串口交互软件putty。单纯创建一个没有显示能力的容器命令如下：
+
 ```
 docker run -it \
 -v /home/zevorn/skyeye_workspace/:/home/skyeye_workspace \
 --name open-skyeye skyeye:sky-dev /bin/bash
 ```
 
-创建好容器，就进入了bash，效果如下图：
+创建好容器，自动进入bash，效果如下：
 
 ![](media/02.png)
 
+接着我们进入共享给容器的目录，输入命令`cd /home/skyeye-workspace/code && ls`，顺便浏览一下代码目录：
 
+![](media/03.png)
+
+现在，确定无误后，我们现在可以编译Open-SkyEye了！，请输入以下命令：
+
+```
+./autogen.sh && ./configure --prefix=/home/skyeye-workspace/opt/skyeye && make -j4 && make install
+```
+
+等待编译完后，看到如下图：
+
+![](media/04.png)
+
+现在可以输出命令`/home/skyeye-workspace/opt/skyeye/bin/skyeye`，启动skyeye了：
+
+![](media/05.png)
 
 ****
 # 命令行cli的使用
