@@ -7,12 +7,12 @@
   - [测试用例](https://gitee.com/open-skyeye/testcase)
   
 - 社区
-  - [会议日历](/zh-cn/)
+  - [会议日历](/docs/zh-cn/)
   - [加入我们](/en/)
 
 - 探索
   - [子项目](/en/)
 
 - 新闻
-  - [公众号](/zh-cn/)
+  - [公众号](/docs/zh-cn/)
   - [知乎](/en/)
