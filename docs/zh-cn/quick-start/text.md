@@ -1,5 +1,4 @@
-# 
-# 前言
+## 前言
 
 Open-SkyEye是一款可建模的国产嵌入式仿真软件，拥有良好的开源基因。虽然经历了商业孵化，但有一定发展以后，我们还是决定，将我们的一些成果，继续贡献和回馈给开源社区。Open-SkyEye最早是在linux上面开发的，为了保持优良的传统，后续Open-SkyEye的发行方式，还是以linux为主，不过考虑到有使用windows和macos的小伙伴，Open-SkyEye会提供Docker镜像，已经打包好了开发环境，可以很方便的快速体验和上手Open-SkyEye。
 
@@ -7,9 +6,9 @@ Open-SkyEye是一款可建模的国产嵌入式仿真软件，拥有良好的开
 
 ****
 
-# 一、快速安装
+## 一、快速安装
 
-## （一）准备工作
+### （一）准备工作
 
 Open-SkyEye的发行版，基于Docker打包，只需要安装docker，就能正常使用和开发Open-SkyEye。目前我们测试过ubuntu、archlinux、windows、macos，只要支持docker的生产环境，基本都可以运行Open-SkyEye。
 
@@ -33,7 +32,7 @@ cd /home/zevorn/skyeye-workspace
 git clone https://gitee.com/open-skyeye/code.git
 git clone https://gitee.com/open-skyeye/testcase.git
 ```
-## （二）导入镜像，并新建容器
+### （二）导入镜像，并新建容器
 
 以ubuntu20.04为例，首先启动docker服务，命令为`sudo service docker start`,不同的操作系统或者平台，可能方法不同，可自行查阅。
 
@@ -66,7 +65,7 @@ docker run -it \
 -v /home/zevorn/skyeye_workspace/:/home/skyeye_workspace \
 --name open-skyeye skyeye:sky-dev /bin/bash
 ```
-## （三）编译Open-SkyEye
+### （三）编译Open-SkyEye
 
 创建好容器，自动进入bash，效果如下：
 
@@ -93,7 +92,7 @@ docker run -it \
 ![](media/05.png)
 
 ****
-# 二、命令行cli的使用
+## 二、命令行cli的使用
 
 输入help，可以查看Open-SkyEye支持的命令，这里我们通过加载一个测试用例，来展示常用的一些命令。
 
@@ -126,13 +125,13 @@ docker run -it \
 
 ****
 
-# 三、图形界面ui的使用
+## 三、图形界面ui的使用
 正在更新。
 
 
 ****
 
-# 四、工程建模
+## 四、工程建模
 正在更新。
 
 

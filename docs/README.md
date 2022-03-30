@@ -9,5 +9,3 @@ Open-SkyEye是一个开源软件（OpenSource Software）项目，中文名字�
 ****
 
 # 修改规范说明
-
-正在更新。

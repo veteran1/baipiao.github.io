@@ -4,10 +4,10 @@
 
 > 做世界级的嵌入式虚拟化仿真平台
 
-[快速开始](/zh-cn/quick-start/quick-start.md)
-[开发工具](/zh-cn/env-doc/env-doc.md)
-[用户教程](zh-cn/env-doc/env-doc.md)
-[开发者手册](zh-cn/env-doc/env-doc.md)
+[快速开始](/zh-cn/quick-start/text.md)
+[开发工具](/zh-cn/tools/env-doc.md)
+[教程手册](zh-cn/tools/env-doc.md)
+[社区分享](zh-cn/community/)
 
 <!-- 背景色 -->
 
